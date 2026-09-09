@@ -14,7 +14,7 @@ version: 1
 metadata:
   content_hash:
     osx-arm64: c0dcb8c849da10666a4204199e1468b74fa5cee5385fd62b1a7cf87e12cd417d
-    linux-64: 35f75939b894b3fd53eebd5d9c01cb667b8f7517ab082164b72c5fe0775f772d
+    linux-64: 3cbf084364b4714437858527f7188bc924df5dece7bba7b4060f350960d9063d
     osx-64: ae383870ce4e290474bcc8bd3e5f89ea8ea0dc8a4aa9f337de7e20d2133d2674
   channels:
   - url: conda-forge
@@ -22,9 +22,9 @@ metadata:
   - url: bioconda
     used_env_vars: []
   platforms:
-  - osx-arm64
   - linux-64
   - osx-64
+  - osx-arm64
   sources:
   - ../environment.yml
 package:
@@ -323,6 +323,134 @@ package:
     sha256: 08d7238663fc408ba2ab60b02fa3d06a7ca9d872962e03e90c7e0fdecb7ed1d0
   category: main
   optional: false
+- name: bioconductor-assorthead
+  version: 1.0.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-assorthead-1.0.0-r44hdfd78af_0.tar.bz2
+  hash:
+    md5: 7eed88ed1733d29135f3e805573cd429
+    sha256: a90ee59eebe9dd17cd8fdf410fc984e2435ea8f882d674d9a36e531304943ae6
+  category: main
+  optional: false
+- name: bioconductor-beachmat
+  version: 2.22.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-assorthead: '>=1.0.0,<1.1.0,>=1.0.0,<1.1.0a0'
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    bioconductor-delayedarray: '>=0.32.0,<0.33.0,>=0.32.0,<0.33.0a0'
+    bioconductor-sparsearray: '>=1.6.0,<1.7.0,>=1.6.0,<1.7.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    libstdcxx: '>=13'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: ''
+    r-rcpp: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-beachmat-2.22.0-r44he5774e6_1.tar.bz2
+  hash:
+    md5: eff6b03deca8b3d4a25f1e6fc2832524
+    sha256: 8303d99e2378121c9a0e5f17f3c5b34c9bbc25808e68495373c3253f8ed2c73f
+  category: main
+  optional: false
+- name: bioconductor-biobase
+  version: 2.66.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-biobase-2.66.0-r44h3df3fcb_0.tar.bz2
+  hash:
+    md5: 56f651b4dbe8625ba510c7c3233da8a9
+    sha256: 5f482a491f073d6e2441dc192c441f06857eb0039695ef564cea17ffe090d57a
+  category: main
+  optional: false
+- name: bioconductor-biocgenerics
+  version: 0.52.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-biocgenerics-0.52.0-r44hdfd78af_3.tar.bz2
+  hash:
+    md5: 8a9defade51c2c2a6b90a4474dcdfdfc
+    sha256: 372f2a4b5f1802dc76347b1e87d8a75fea204304fa5bb3239e54737907761d7d
+  category: main
+  optional: false
+- name: bioconductor-biocneighbors
+  version: 2.0.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-assorthead: '>=1.0.0,<1.1.0,>=1.0.0,<1.1.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    libstdcxx: '>=13'
+    r-base: '>=4.4,<4.5.0a0'
+    r-rcpp: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-biocneighbors-2.0.0-r44he5774e6_1.tar.bz2
+  hash:
+    md5: 2591c8eb423f65beea82ca62b95a28a4
+    sha256: bbb787100bff78cf8afdbac805a17dd37ba366333128fd3f89173219b4fe687b
+  category: main
+  optional: false
+- name: bioconductor-biocparallel
+  version: 1.40.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    libstdcxx: '>=13'
+    r-base: '>=4.4,<4.5.0a0'
+    r-bh: ''
+    r-codetools: ''
+    r-cpp11: ''
+    r-futile.logger: ''
+    r-snow: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-biocparallel-1.40.0-r44he5774e6_1.tar.bz2
+  hash:
+    md5: 09b7ce5c49548c48d102721a0dea6492
+    sha256: b430a140dc4303e07f5ac4ebfeac1f1d3b65822b6d3cedfaa628d331f94403d4
+  category: main
+  optional: false
+- name: bioconductor-biocsingular
+  version: 1.22.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-assorthead: '>=1.0.0,<1.1.0,>=1.0.0,<1.1.0a0'
+    bioconductor-beachmat: '>=2.22.0,<2.23.0,>=2.22.0,<2.23.0a0'
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    bioconductor-biocparallel: '>=1.40.0,<1.41.0,>=1.40.0,<1.41.0a0'
+    bioconductor-delayedarray: '>=0.32.0,<0.33.0,>=0.32.0,<0.33.0a0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0,>=0.44.0,<0.45.0a0'
+    bioconductor-scaledmatrix: '>=1.14.0,<1.15.0,>=1.14.0,<1.15.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    libstdcxx: '>=13'
+    r-base: '>=4.4,<4.5.0a0'
+    r-irlba: ''
+    r-matrix: ''
+    r-rcpp: ''
+    r-rsvd: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-biocsingular-1.22.0-r44he5774e6_1.tar.bz2
+  hash:
+    md5: 9b6e01cef1ecabd6c1aab0b8a112b032
+    sha256: d57614215b69e7cc9812ecee2ee0613498c5e77d670d3f5071b11c4ed246702c
+  category: main
+  optional: false
 - name: bioconductor-biocversion
   version: 3.20.0
   manager: conda
@@ -357,6 +485,414 @@ package:
   hash:
     md5: 307f8d77f0b4ac4644073a79b3c950b8
     sha256: 28796a4f02cf43b606000208d8d8e42c92de4ef80c1bbbf657e359f4e6a5682c
+  category: main
+  optional: false
+- name: bioconductor-data-packages
+  version: '20260207'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    curl: ''
+    jq: ''
+    r-base: ''
+    yq: ''
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-data-packages-20260207-hdfd78af_1.conda
+  hash:
+    md5: 18e4b2aa3e7ccbf04c8e7064fd9671b7
+    sha256: 99a2797f99cb294f66ce9da5adcf7eaf28d6b9060c4d54551eb963538d72031b
+  category: main
+  optional: false
+- name: bioconductor-delayedarray
+  version: 0.32.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    bioconductor-iranges: '>=2.40.0,<2.41.0,>=2.40.0,<2.41.0a0'
+    bioconductor-matrixgenerics: '>=1.18.0,<1.19.0,>=1.18.0,<1.19.0a0'
+    bioconductor-s4arrays: '>=1.6.0,<1.7.0,>=1.6.0,<1.7.0a0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0,>=0.44.0,<0.45.0a0'
+    bioconductor-sparsearray: '>=1.6.0,<1.7.0,>=1.6.0,<1.7.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-delayedarray-0.32.0-r44h3df3fcb_1.tar.bz2
+  hash:
+    md5: 2a69a0cd9896594a301067804e65b8d0
+    sha256: ba4f80302cdeed5d9158349f5714c71ca26eac36dc9795c2276d47fef27c0195
+  category: main
+  optional: false
+- name: bioconductor-edger
+  version: 4.4.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-limma: '>=3.62.0,<3.63.0,>=3.62.0,<3.63.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-locfit: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-edger-4.4.0-r44h3df3fcb_0.tar.bz2
+  hash:
+    md5: 249af741dc8dac49eb847ac323b1f2ab
+    sha256: 2930abe22ca41521a6d09d6b042bd6cf2c99ba55ead766924de37a3c9e60599c
+  category: main
+  optional: false
+- name: bioconductor-genomeinfodb
+  version: 1.42.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0'
+    bioconductor-genomeinfodbdata: '>=1.2.0,<1.3.0'
+    bioconductor-iranges: '>=2.40.0,<2.41.0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0'
+    bioconductor-ucsc.utils: '>=1.2.0,<1.3.0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-genomeinfodb-1.42.0-r44hdfd78af_2.tar.bz2
+  hash:
+    md5: 52f21aeff5a62bf53a37a4ad4d197e06
+    sha256: 7d7289e06ccb215f3663c96ead00e3a53261fdd2d4ff8b529a78b1a15d6c415a
+  category: main
+  optional: false
+- name: bioconductor-genomeinfodbdata
+  version: 1.2.13
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-data-packages: '>=20241103'
+    curl: ''
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-genomeinfodbdata-1.2.13-r44hdfd78af_0.tar.bz2
+  hash:
+    md5: 06d453df3bc59956a3ffac7674652f44
+    sha256: ac34a7919b6307dfcdc95c50c3dc5c01838edd43f214329549758fd236775fd9
+  category: main
+  optional: false
+- name: bioconductor-genomicranges
+  version: 1.58.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    bioconductor-genomeinfodb: '>=1.42.0,<1.43.0,>=1.42.0,<1.43.0a0'
+    bioconductor-iranges: '>=2.40.0,<2.41.0,>=2.40.0,<2.41.0a0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0,>=0.44.0,<0.45.0a0'
+    bioconductor-xvector: '>=0.46.0,<0.47.0,>=0.46.0,<0.47.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-genomicranges-1.58.0-r44h3df3fcb_2.tar.bz2
+  hash:
+    md5: 2200bf0109f17b793a1e0140f74e0d1a
+    sha256: 175012b124573b042d9733230f42ddc1b40a27de04e70b03703159957164de99
+  category: main
+  optional: false
+- name: bioconductor-iranges
+  version: 2.40.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0,>=0.44.0,<0.45.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-iranges-2.40.0-r44h3df3fcb_2.tar.bz2
+  hash:
+    md5: f2e8f02a2987ccaf39a22c36fa0e9fa8
+    sha256: 5103487434961fb2c62af257d45663200fe2cbbd50b861678d95e0ec46556648
+  category: main
+  optional: false
+- name: bioconductor-limma
+  version: 3.62.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    liblzma: '>=5.6.4,<6.0a0'
+    libzlib: '>=1.3.1,<2.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-statmod: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-limma-3.62.1-r44h15a9599_1.tar.bz2
+  hash:
+    md5: f98d28949c8fbfcfa8e7073512d4bbee
+    sha256: 1aa970c6ca0ffa1a412b19c1a09c19a6061f79db95a9bf424c47bd8e4cc9a645
+  category: main
+  optional: false
+- name: bioconductor-matrixgenerics
+  version: 1.18.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrixstats: '>=1.4.1'
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-matrixgenerics-1.18.0-r44hdfd78af_0.tar.bz2
+  hash:
+    md5: d1b86fcb6d7e4d3c9fe67817c739b5a7
+    sha256: 4285ed22931da41e368946c3d89901df479421a148ef83ad2c0f1378c5f59a28
+  category: main
+  optional: false
+- name: bioconductor-s4arrays
+  version: 1.6.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    bioconductor-iranges: '>=2.40.0,<2.41.0,>=2.40.0,<2.41.0a0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0,>=0.44.0,<0.45.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-abind: ''
+    r-base: '>=4.4,<4.5.0a0'
+    r-crayon: ''
+    r-matrix: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-s4arrays-1.6.0-r44h3df3fcb_1.tar.bz2
+  hash:
+    md5: a6774527b21da1eb7a99b3839301ab57
+    sha256: 8ec7155203462c542da0565c702261a87ba5cf7b5b2a6998fdbc9eca728d453c
+  category: main
+  optional: false
+- name: bioconductor-s4vectors
+  version: 0.44.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-s4vectors-0.44.0-r44h3df3fcb_2.tar.bz2
+  hash:
+    md5: 13bdbde9c9496802b7974d006f22fe11
+    sha256: 08b6d33a61aca360a98d2188bc4ca9d2a780683e280c4b789cdb7d285719e07e
+  category: main
+  optional: false
+- name: bioconductor-scaledmatrix
+  version: 1.14.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-delayedarray: '>=0.32.0,<0.33.0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: ''
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-scaledmatrix-1.14.0-r44hdfd78af_0.tar.bz2
+  hash:
+    md5: 46486df708702b4732143a63e4ba6f5f
+    sha256: 196c914adb1618f1a3b118ef6c073ad3e5e6490dc96d1ae8f28389efa410a9e2
+  category: main
+  optional: false
+- name: bioconductor-scater
+  version: 1.34.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-beachmat: '>=2.22.0,<2.23.0'
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0'
+    bioconductor-biocneighbors: '>=2.0.0,<2.1.0'
+    bioconductor-biocparallel: '>=1.40.0,<1.41.0'
+    bioconductor-biocsingular: '>=1.22.0,<1.23.0'
+    bioconductor-delayedarray: '>=0.32.0,<0.33.0'
+    bioconductor-matrixgenerics: '>=1.18.0,<1.19.0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0'
+    bioconductor-scuttle: '>=1.16.0,<1.17.0'
+    bioconductor-singlecellexperiment: '>=1.28.0,<1.29.0'
+    bioconductor-sparsearray: '>=1.6.0,<1.7.0'
+    bioconductor-summarizedexperiment: '>=1.36.0,<1.37.0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-ggbeeswarm: ''
+    r-ggplot2: ''
+    r-ggrastr: ''
+    r-ggrepel: ''
+    r-matrix: ''
+    r-pheatmap: ''
+    r-rcolorbrewer: ''
+    r-rcppml: ''
+    r-rlang: ''
+    r-rtsne: ''
+    r-uwot: ''
+    r-viridis: ''
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-scater-1.34.1-r44hdfd78af_0.tar.bz2
+  hash:
+    md5: 7ca41e117bca1019178305736b300d20
+    sha256: cbce665da0767090571ce1af277d7b2c3aeb4666107921f55d950eb2afbe99d1
+  category: main
+  optional: false
+- name: bioconductor-scuttle
+  version: 1.16.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-beachmat: '>=2.22.0,<2.23.0,>=2.22.0,<2.23.0a0'
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    bioconductor-biocparallel: '>=1.40.0,<1.41.0,>=1.40.0,<1.41.0a0'
+    bioconductor-delayedarray: '>=0.32.0,<0.33.0,>=0.32.0,<0.33.0a0'
+    bioconductor-genomicranges: '>=1.58.0,<1.59.0,>=1.58.0,<1.59.0a0'
+    bioconductor-matrixgenerics: '>=1.18.0,<1.19.0,>=1.18.0,<1.19.0a0'
+    bioconductor-s4arrays: '>=1.6.0,<1.7.0,>=1.6.0,<1.7.0a0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0,>=0.44.0,<0.45.0a0'
+    bioconductor-singlecellexperiment: '>=1.28.0,<1.29.0,>=1.28.0,<1.29.0a0'
+    bioconductor-sparsearray: '>=1.6.0,<1.7.0,>=1.6.0,<1.7.0a0'
+    bioconductor-summarizedexperiment: '>=1.36.0,<1.37.0,>=1.36.0,<1.37.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    libstdcxx: '>=13'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: ''
+    r-rcpp: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-scuttle-1.16.0-r44he5774e6_1.tar.bz2
+  hash:
+    md5: adb90379451e1ca3c6c11654ca666ab7
+    sha256: 1c0bcfbf2a32d6222ffd61e246fa4d9482f603b0f726f78cb0e28ef801f5b6c9
+  category: main
+  optional: false
+- name: bioconductor-singlecellexperiment
+  version: 1.28.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0'
+    bioconductor-delayedarray: '>=0.32.0,<0.33.0'
+    bioconductor-genomicranges: '>=1.58.0,<1.59.0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0'
+    bioconductor-summarizedexperiment: '>=1.36.0,<1.37.0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-singlecellexperiment-1.28.0-r44hdfd78af_0.tar.bz2
+  hash:
+    md5: c60aa2ff0cc2453c04f1ce351e5bb9c5
+    sha256: cf7cd66f0e1f991ad50f62b99bc6c92e9ec9d9af6501c24f73de38251ab73033
+  category: main
+  optional: false
+- name: bioconductor-sparsearray
+  version: 1.6.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    bioconductor-iranges: '>=2.40.0,<2.41.0,>=2.40.0,<2.41.0a0'
+    bioconductor-matrixgenerics: '>=1.18.0,<1.19.0,>=1.18.0,<1.19.0a0'
+    bioconductor-s4arrays: '>=1.6.0,<1.7.0,>=1.6.0,<1.7.0a0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0,>=0.44.0,<0.45.0a0'
+    bioconductor-xvector: '>=0.46.0,<0.47.0,>=0.46.0,<0.47.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: ''
+    r-matrixstats: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-sparsearray-1.6.0-r44h3df3fcb_1.tar.bz2
+  hash:
+    md5: 143242d9cf4199b8f26c2552b61d2049
+    sha256: 244993331f46f90037905c31f17e2aa49871d366f2b0f40817942a15c3a2426f
+  category: main
+  optional: false
+- name: bioconductor-splatter
+  version: 1.30.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0'
+    bioconductor-biocparallel: '>=1.40.0,<1.41.0'
+    bioconductor-edger: '>=4.4.0,<4.5.0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0'
+    bioconductor-scuttle: '>=1.16.0,<1.17.0'
+    bioconductor-singlecellexperiment: '>=1.28.0,<1.29.0'
+    bioconductor-summarizedexperiment: '>=1.36.0,<1.37.0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-checkmate: '>=2.0.0'
+    r-crayon: ''
+    r-fitdistrplus: ''
+    r-locfit: ''
+    r-matrixstats: ''
+    r-rlang: ''
+    r-withr: ''
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-splatter-1.30.0-r44hdfd78af_0.tar.bz2
+  hash:
+    md5: 23bebb551a008c9c706060c1d5166f76
+    sha256: 201acd7a80963143243281c152af214cae65e6b3bfa8bf93eccd12122e51a3c2
+  category: main
+  optional: false
+- name: bioconductor-summarizedexperiment
+  version: 1.36.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biobase: '>=2.66.0,<2.67.0'
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0'
+    bioconductor-delayedarray: '>=0.32.0,<0.33.0'
+    bioconductor-genomeinfodb: '>=1.42.0,<1.43.0'
+    bioconductor-genomicranges: '>=1.58.0,<1.59.0'
+    bioconductor-iranges: '>=2.40.0,<2.41.0'
+    bioconductor-matrixgenerics: '>=1.18.0,<1.19.0'
+    bioconductor-s4arrays: '>=1.6.0,<1.7.0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: ''
+  url: https://conda.anaconda.org/bioconda/noarch/bioconductor-summarizedexperiment-1.36.0-r44hdfd78af_0.tar.bz2
+  hash:
+    md5: 144e795fdb25d213899e249bcb538bc4
+    sha256: 163f500839b6aee3d5b1b836ffe2241d84188cf2047a15f6333d4b54cb8d3157
+  category: main
+  optional: false
+- name: bioconductor-ucsc.utils
+  version: 1.2.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0,>=0.44.0,<0.45.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-httr: ''
+    r-jsonlite: ''
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-ucsc.utils-1.2.0-r44h9ee0642_1.tar.bz2
+  hash:
+    md5: 1653b8e9eb24949cc045e21ad21927b6
+    sha256: b44c061b88b91fd7666d483f1fa7de46532fb936c74e54e30d31900181f3d18d
+  category: main
+  optional: false
+- name: bioconductor-xvector
+  version: 0.46.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    bioconductor-biocgenerics: '>=0.52.0,<0.53.0,>=0.52.0,<0.53.0a0'
+    bioconductor-iranges: '>=2.40.0,<2.41.0,>=2.40.0,<2.41.0a0'
+    bioconductor-s4vectors: '>=0.44.0,<0.45.0,>=0.44.0,<0.45.0a0'
+    bioconductor-zlibbioc: '>=1.52.0,<1.53.0,>=1.52.0,<1.53.0a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    libzlib: '>=1.3.1,<2.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-xvector-0.46.0-r44h15a9599_2.tar.bz2
+  hash:
+    md5: 1ce6efc6cb59e8ce10ec4cb722ece013
+    sha256: 0e9ff1ff36d2aef4999ff248785e7bde5ffc825cd95466a1df52732d45cf9c77
+  category: main
+  optional: false
+- name: bioconductor-zlibbioc
+  version: 1.52.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=13'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/bioconda/linux-64/bioconductor-zlibbioc-1.52.0-r44h3df3fcb_2.tar.bz2
+  hash:
+    md5: 1f08126acbb2d9a8835aba0b1a7bf9e2
+    sha256: 9d9c1f20cec2bac9c259b1e7798795e61c92573cfea74b5fda739c37a118cf6a
   category: main
   optional: false
 - name: brotli-python
@@ -2165,6 +2701,40 @@ package:
     sha256: aff7bd01037dfbacb0661ef0435a224fe9fcda1d624895fb336107dd68e5bb34
   category: main
   optional: false
+- name: g-ir-build-tools
+  version: 1.86.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=15'
+    libglib: '>=2.88.3,<3.0a0'
+    pkg-config: ''
+    python: '>=3.12,<3.13.0a0'
+    python_abi: 3.12.*
+    setuptools: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/g-ir-build-tools-1.86.0-py312h356d82a_3.conda
+  hash:
+    md5: 3ff32e7da4453f32e4291644450e789c
+    sha256: b4576aedd6809a9d8ffb1f799088cfd3e6bc8082a6fd1734fe84b5ef50490d1c
+  category: main
+  optional: false
+- name: g-ir-host-tools
+  version: 1.86.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libffi: '>=3.7.0,<3.8.0a0'
+    libgcc: '>=15'
+    libgirepository: 1.86.0
+    libglib: '>=2.88.3,<3.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/g-ir-host-tools-1.86.0-h5297791_3.conda
+  hash:
+    md5: fd98cadc0fc11641ea8a76661655398b
+    sha256: f7c3c809f237270e06b6ba1663285c601ea84e0ddf4dc1ef436d1a3802a1ca15
+  category: main
+  optional: false
 - name: gcc
   version: 15.3.0
   manager: conda
@@ -2345,6 +2915,27 @@ package:
   hash:
     md5: d041b375de31a576c37b8c52044c94b7
     sha256: 4bb0bfe6b0fcb2830689e2b6b99090b458ad791b6adca570e5d3a322eb912cbc
+  category: main
+  optional: false
+- name: gobject-introspection
+  version: 1.86.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    cairo: '>=1.18.4,<2.0a0'
+    g-ir-build-tools: 1.86.0
+    g-ir-host-tools: 1.86.0
+    libffi: '>=3.7.0,<3.8.0a0'
+    libgcc: '>=15'
+    libgirepository: 1.86.0
+    libglib: '>=2.88.3,<3.0a0'
+    python: '>=3.12,<3.13.0a0'
+    python_abi: 3.12.*
+  url: https://conda.anaconda.org/conda-forge/linux-64/gobject-introspection-1.86.0-py312h1e02d69_3.conda
+  hash:
+    md5: 50d0e1111f4c7aace2d3fe20abbceb37
+    sha256: 3f4312699fbd9647418d08aca8ccac6ef93297ffedf34228b5bf8765662ba7c0
   category: main
   optional: false
 - name: graphite2
@@ -4164,6 +4755,22 @@ package:
   hash:
     md5: d54390644d893d50e739b19145aae45f
     sha256: 902719c38c7a390d305435a362dc83893754c3f933569a38347c434cd1c12540
+  category: main
+  optional: false
+- name: libgirepository
+  version: 1.86.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    cairo: '>=1.18.4,<2.0a0'
+    libffi: '>=3.7.0,<3.8.0a0'
+    libgcc: '>=15'
+    libglib: '>=2.88.3,<3.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/libgirepository-1.86.0-h6d5faa7_3.conda
+  hash:
+    md5: 93a877119cbec0794cc4e24a8e367b70
+    sha256: b68d9a3e0b6671e519f324dbb8e48fd74d3b312c1fe96ac91ad629f9c075853b
   category: main
   optional: false
 - name: libgit2
@@ -6353,6 +6960,19 @@ package:
     sha256: 4779cd57231ce2e96fac643fcbdd4a6f51a57986264545445574e9c4acf526d3
   category: main
   optional: false
+- name: pkg-config
+  version: 0.29.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=15'
+  url: https://conda.anaconda.org/conda-forge/linux-64/pkg-config-0.29.2-h1114479_1013.conda
+  hash:
+    md5: 0aab2923309084c5f89ef32cd39a19b2
+    sha256: 8f27ee1b6166c5be505dba4b0dd0f3b3b81ddec811f6118cc337b90cbd3937a4
+  category: main
+  optional: false
 - name: pkginfo
   version: 1.12.1.2
   manager: conda
@@ -7112,6 +7732,32 @@ package:
     sha256: 737959262d03c9c305618f2d48c7f1691fb996f14ae420bfd05932635c99f873
   category: main
   optional: false
+- name: r-abind
+  version: '1.4_8'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-abind-1.4_8-r44hc72bb7e_1.conda
+  hash:
+    md5: bc7c760b0b0ad2a6eb8970f56ef82971
+    sha256: 1d83d808a9a52b1cb3919b110687d2fcb605e96143136745cca9bb7c44e4b06f
+  category: main
+  optional: false
+- name: r-algdesign
+  version: 1.2.1.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-algdesign-1.2.1.2-r44h54b55ab_1.conda
+  hash:
+    md5: 651edcb12e136e1f054b6788e754c1a9
+    sha256: e528e2ee0370974968b1c6f0ac2b6c8aab2c9e50f1d803bb8cd5e68a7238487e
+  category: main
+  optional: false
 - name: r-askpass
   version: 1.2.1
   manager: conda
@@ -7423,6 +8069,32 @@ package:
     sha256: ee24ccf24f0a9503ebf24c802c06daac3acc50f6b6b09c3eaefb82b70c536453
   category: main
   optional: false
+- name: r-beeswarm
+  version: 0.4.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-beeswarm-0.4.0-r44h54b55ab_5.conda
+  hash:
+    md5: e5488173c2e86995cb03d3d1a92262d3
+    sha256: 29a809002a3989bdb1f2fdf7f6fbc380d5927aaae2cd7df57cbccb75f6552c58
+  category: main
+  optional: false
+- name: r-bh
+  version: 1.87.0_1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-bh-1.87.0_1-r44hc72bb7e_1.conda
+  hash:
+    md5: b7c43e2c7fd3f9b9599123ea9a4be21d
+    sha256: 564bb989ec8dbf572876e9cd1c84de670c5168a7bb107d2043fc33cf5a80c183
+  category: main
+  optional: false
 - name: r-biocmanager
   version: 1.30.27
   manager: conda
@@ -7647,6 +8319,31 @@ package:
     sha256: 0f10c2770376e494304e10c6193c119a785db306db0d908b025294b4e4be1162
   category: main
   optional: false
+- name: r-cairo
+  version: '1.7_0'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    cairo: '>=1.18.4,<2.0a0'
+    harfbuzz: '>=12.3.2'
+    icu: '>=78.2,<79.0a0'
+    libexpat: '>=2.7.4,<3.0a0'
+    libfreetype: '>=2.14.1'
+    libfreetype6: '>=2.14.1'
+    libgcc: '>=14'
+    libglib: '>=2.86.4,<3.0a0'
+    libjpeg-turbo: '>=3.1.2,<4.0a0'
+    libtiff: '>=4.7.1,<4.8.0a0'
+    libzlib: '>=1.3.1,<2.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+    xorg-libx11: '>=1.8.13,<2.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-cairo-1.7_0-r44h0057c2c_1.conda
+  hash:
+    md5: f5d20a5702c96f693daeb4629d7f34d7
+    sha256: eb60eeb766fb50c4a3fc7c2372ed7b70f5b1d3850e2ede3c09a0495f1ecf3e49
+  category: main
+  optional: false
 - name: r-callr
   version: 3.7.6
   manager: conda
@@ -7687,6 +8384,21 @@ package:
   hash:
     md5: 020dde50545870904c62062ffab4b621
     sha256: e85f816c249baa83e8bbfd8aa15ef9249151d9aaae69c5010ea209e8d1fa3ff9
+  category: main
+  optional: false
+- name: r-checkmate
+  version: 2.3.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    r-backports: '>=1.1.0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-checkmate-2.3.3-r44h54b55ab_1.conda
+  hash:
+    md5: 257a9a3c414ce1ff6cf908b0b5f44098
+    sha256: 26458ac4dbb31bc708c00bf5f08fe1e7b2c594cfd5d96c5db4beee6a9eab6747
   category: main
   optional: false
 - name: r-cli
@@ -7868,6 +8580,20 @@ package:
   hash:
     md5: d81c629f78e571b14f9a617253c44552
     sha256: 3cf1c320913ddae7bd91ba770535a9d4765862a9fb1bac419a4ea41b8c39d693
+  category: main
+  optional: false
+- name: r-colorspace
+  version: '2.1_3'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-colorspace-2.1_3-r44h54b55ab_0.conda
+  hash:
+    md5: c163d0ec145b9291fc76251c111bdf6b
+    sha256: eac31cb3b2a46d641ba03d1c1501b30f7608eb4c6e743e9b63fd00461171ca78
   category: main
   optional: false
 - name: r-commonmark
@@ -8423,6 +9149,24 @@ package:
     sha256: 3dae4e0a5f1dfb19e05b139b062687081e6753d3e2911c39ca28c196d13270a6
   category: main
   optional: false
+- name: r-dqrng
+  version: 0.3.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-bh: '>=1.64.0_1'
+    r-rcpp: '>=0.12.16'
+    r-sitmo: '>=2.0.0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-dqrng-0.3.2-r44h3697838_2.conda
+  hash:
+    md5: 1d3a427eef341c29b5aa5dc0da5274a6
+    sha256: c83257535efa22c4c44fcfa36f958fe3cd7b7f1129e738d29afe9875172871f0
+  category: main
+  optional: false
 - name: r-ellipsis
   version: 0.3.3
   manager: conda
@@ -8542,6 +9286,21 @@ package:
     sha256: 9d3fe7009ecb519c2aef6d3d174d8844d3b5829fa89371689be08416dce1a061
   category: main
   optional: false
+- name: r-farver
+  version: 2.1.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-farver-2.1.2-r44h3697838_2.conda
+  hash:
+    md5: 830031b95e37195f00524cabc98adba4
+    sha256: 4386f196e54365a83cf0df0c2a389cb286e488bb868f96c4d6c0a4cc1bb69c84
+  category: main
+  optional: false
 - name: r-fastmap
   version: 1.2.0
   manager: conda
@@ -8625,6 +9384,36 @@ package:
     sha256: b12dbfab27d9c275f15ac9a881a16b7852067e7e921b0f58c70ba1f31086b385
   category: main
   optional: false
+- name: r-fitdistrplus
+  version: '1.2_6'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-mass: ''
+    r-rlang: ''
+    r-survival: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-fitdistrplus-1.2_6-r44hc72bb7e_0.conda
+  hash:
+    md5: a1a2f29ff2f591f30675da615d89a1a5
+    sha256: 8f652be30796a3a713b79d5dd96efee62a0878372a7e0b47a48365795b3f09bd
+  category: main
+  optional: false
+- name: r-fnn
+  version: 1.1.4.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-fnn-1.1.4.1-r44h3697838_2.conda
+  hash:
+    md5: bdd0f7066a4068d76539124c33c9350d
+    sha256: 7471bd0b9fd196493e164d60881c4012bf3407d17baabf7b4d68120ce54a1928
+  category: main
+  optional: false
 - name: r-fontawesome
   version: 0.5.3
   manager: conda
@@ -8665,6 +9454,18 @@ package:
   hash:
     md5: 1f426d1938c22f0f59407b25026ccdc3
     sha256: efa7167cc694c30895c687c2288b83a77834cffc42782ae0c452dc3f5ca16461
+  category: main
+  optional: false
+- name: r-formatr
+  version: '1.14'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-formatr-1.14-r44hc72bb7e_3.conda
+  hash:
+    md5: 7dec5b78870748c0c968564b67db9d00
+    sha256: cb07de1571306945eb26226073f6962c54ea654957e674c77e99fe66fa00c56e
   category: main
   optional: false
 - name: r-fs
@@ -8711,6 +9512,32 @@ package:
   hash:
     md5: 25237c24099b2d514d2fbb57ab4deda2
     sha256: 482d0809cd039b9c86527fff21584f0b3dd2ef6a860433e4136b09a0e42a61e4
+  category: main
+  optional: false
+- name: r-futile.logger
+  version: 1.4.9
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-futile.options: ''
+    r-lambda.r: '>=1.1.0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-futile.logger-1.4.9-r44hc72bb7e_0.conda
+  hash:
+    md5: 454144516122f56a4837429c0ecbf513
+    sha256: 766ab49c79f281dba7834f8428821c2843b4f838ffb3a9c7986e590172c79322
+  category: main
+  optional: false
+- name: r-futile.options
+  version: 1.0.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-futile.options-1.0.1-r44hc72bb7e_1006.conda
+  hash:
+    md5: 569ec6607e422c9ad9f622eed1bc55fb
+    sha256: d560fa200628c6a1df32c077f77224abe6a98a2b1e250b7f6cfe1d301b90b47b
   category: main
   optional: false
 - name: r-gert
@@ -8769,6 +9596,82 @@ package:
   hash:
     md5: 6df73429ed1e99b2bd3b69e0335fe81a
     sha256: acab08237b800f85b1b0c0072239e6a8a51df5e0bb3972b1ef37bd061de0d3b3
+  category: main
+  optional: false
+- name: r-ggbeeswarm
+  version: 0.7.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-beeswarm: ''
+    r-ggplot2: '>=3.3.0'
+    r-lifecycle: ''
+    r-vipor: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-ggbeeswarm-0.7.3-r44hc72bb7e_0.conda
+  hash:
+    md5: e63ae9655398cc67d8034048649def0d
+    sha256: 9534d6e8f0b6a2205b3d0c87a84d1c05f553deb79f59276755a0930485c3433c
+  category: main
+  optional: false
+- name: r-ggplot2
+  version: 4.0.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-cli: ''
+    r-glue: ''
+    r-gtable: '>=0.3.6'
+    r-isoband: ''
+    r-lifecycle: '>=1.0.1'
+    r-rlang: '>=1.1.0'
+    r-s7: ''
+    r-scales: '>=1.4.0'
+    r-vctrs: '>=0.6.0'
+    r-withr: '>=2.5.0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-4.0.3-r44h785f33e_0.conda
+  hash:
+    md5: 57e8127cadd9933ddbd38fdf1d9d52e1
+    sha256: 56e4cf8d4d759af520c372ce229cc0e732377c641682cb0eaae620e15856116f
+  category: main
+  optional: false
+- name: r-ggrastr
+  version: 1.0.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-cairo: '>=1.5.9'
+    r-ggbeeswarm: ''
+    r-ggplot2: '>=2.1.0'
+    r-png: ''
+    r-ragg: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-ggrastr-1.0.2-r44hc72bb7e_3.conda
+  hash:
+    md5: 6aa8d63b0adce54a65c0f555e1f89a54
+    sha256: c44aa32ca57e2a61c159fdfadadbe8c44fb22de8ae184aada4e9d8ba1622f721
+  category: main
+  optional: false
+- name: r-ggrepel
+  version: 0.9.8
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-ggplot2: '>=3.5.2'
+    r-rcpp: ''
+    r-rlang: '>=1.1.6'
+    r-s7: ''
+    r-scales: '>=1.4.0'
+    r-withr: '>=3.0.2'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-ggrepel-0.9.8-r44h3697838_0.conda
+  hash:
+    md5: 8fbf25419b936d163fa9f1c3e9d90b0b
+    sha256: dbf8a1ecadbe6d04ee0e534fd8d972fe4fc120f62809a3bf4d838ccfeb020f9e
   category: main
   optional: false
 - name: r-gh
@@ -8899,6 +9802,35 @@ package:
   hash:
     md5: c591df72f9899cfce892fadb2ae841e1
     sha256: 609404bb41166c46c695acd347d8e3d3662817b22c530e36717595bdee772e6d
+  category: main
+  optional: false
+- name: r-gridextra
+  version: 2.3.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-gtable: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-gridextra-2.3.1-r44hc72bb7e_0.conda
+  hash:
+    md5: 3714ddb4a2d4884a139613f7dab91174
+    sha256: 22c25f98039bb54a18524befdd98a5478a7502c89ed25e2b2f5274b5f1e3489d
+  category: main
+  optional: false
+- name: r-gtable
+  version: 0.3.6
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-cli: ''
+    r-glue: ''
+    r-lifecycle: ''
+    r-rlang: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-gtable-0.3.6-r44hc72bb7e_1.conda
+  hash:
+    md5: 1f5b8f9f0cdb53b843c4e2481e22c8c0
+    sha256: e7621253555552d6c29103a8e21c0396712b5de09012263e882bfa0b1e59c812
   category: main
   optional: false
 - name: r-highr
@@ -9161,6 +10093,23 @@ package:
     sha256: 3649d467fe30c22b3a1c916360eb299a6dc2aa4b0e75c32a17460fcca9a65d89
   category: main
   optional: false
+- name: r-httr
+  version: 1.4.9
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-curl: '>=0.9.1'
+    r-jsonlite: ''
+    r-mime: ''
+    r-openssl: '>=0.8'
+    r-r6: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-httr-1.4.9-r44hacb3a79_0.conda
+  hash:
+    md5: dae9c8c17718825ae4824ef3c59ab62e
+    sha256: 7a387db10f3d4aded75204673e135b554cc5ac9c83c9ffa2c77c19ba860b317a
+  category: main
+  optional: false
 - name: r-httr2
   version: 1.3.0
   manager: conda
@@ -9363,6 +10312,41 @@ package:
   hash:
     md5: 14f0f0bff091fa680fdd2212e96be0b1
     sha256: c7cba2b773db5c75e907b8b28b74c38d19d8247feaaec20deaa7455acd63fe44
+  category: main
+  optional: false
+- name: r-irlba
+  version: 2.3.7
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=14'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: '>=1.6_2'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-irlba-2.3.7-r44h0e4624f_0.conda
+  hash:
+    md5: 33e2a34c03e3e40c6a44b78acb8ffe3e
+    sha256: b88014c435de15d30c8ada075e30b2d61af90b88c4b43a2a9203bd605237cacd
+  category: main
+  optional: false
+- name: r-isoband
+  version: 0.3.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-cli: ''
+    r-cpp11: ''
+    r-rlang: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-isoband-0.3.0-r44h3697838_0.conda
+  hash:
+    md5: 94d30cca33a0f27ac7bc992fe0a88d5e
+    sha256: 8067242cd89c8467f186577c7f2249620393eadc5bff1be3f270cceaf2dffb5e
   category: main
   optional: false
 - name: r-jquerylib
@@ -9492,6 +10476,31 @@ package:
     sha256: 83f35c04406a29b9bdc6cdd6c63facc8e45e0d45263680c05887b50aaff44a79
   category: main
   optional: false
+- name: r-labeling
+  version: 0.4.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-labeling-0.4.3-r44hc72bb7e_2.conda
+  hash:
+    md5: 891625b27729556fcac5cb5a3040b10f
+    sha256: e2fe5839dce12c1e7fffdfb83387ae58c93417acb520cd258e8460cc7da533db
+  category: main
+  optional: false
+- name: r-lambda.r
+  version: 1.2.4
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-formatr: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-lambda.r-1.2.4-r44hc72bb7e_5.conda
+  hash:
+    md5: 52dff70fa7503cd2fff2cdbd48e21b6f
+    sha256: 625092566077b110479496f13d610eb7dd128950c5da37b53706f18b6aab39b6
+  category: main
+  optional: false
 - name: r-later
   version: 1.4.8
   manager: conda
@@ -9539,6 +10548,20 @@ package:
   hash:
     md5: b4671b36b1db0fdd53b7ff3acfdaa2c2
     sha256: e526320fe09d33bd459b2c87cef0dc5e67b6409de6b84a3e6b51737d5bb2dcc6
+  category: main
+  optional: false
+- name: r-lattice
+  version: '0.23_1'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=15'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-lattice-0.23_1-r44hddc5280_0.conda
+  hash:
+    md5: e1806a98d488934aecc663e1ca60b5fc
+    sha256: 2590f5c6b4a6e8474cf5562346a995e91549e2bc122b45959b3a6305cd2352b5
   category: main
   optional: false
 - name: r-lazyeval
@@ -9698,6 +10721,21 @@ package:
     sha256: 80a51014de42145e49682e151c3df7be3d60c8bbe1265ef2b3821879e7469f65
   category: main
   optional: false
+- name: r-locfit
+  version: 1.5_9.12
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-lattice: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-locfit-1.5_9.12-r44h54b55ab_1.conda
+  hash:
+    md5: d3c0181f1b8366f20a09c8dc6c33a0bd
+    sha256: d0828d0e8e14244b5eac6c2783ffac8f00a1359ac990725e28660d536cbcf6ae
+  category: main
+  optional: false
 - name: r-lpsolve
   version: 5.6.23
   manager: conda
@@ -9776,6 +10814,51 @@ package:
   hash:
     md5: 89a513908036c039689914f74f817b5e
     sha256: 3307560747b5fda8d3a4475bae40e5a4cfea9f4f92221c8e5a018a7cad1dba17
+  category: main
+  optional: false
+- name: r-mass
+  version: '7.3_66'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-mass-7.3_66-r44h54b55ab_0.conda
+  hash:
+    md5: 4317cc9b7592349d5142402c6cc01d4d
+    sha256: 693808c818145638a2c856681a8efcff956144fd1f00b033dff73ddb311135e7
+  category: main
+  optional: false
+- name: r-matrix
+  version: '1.7_6'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=14'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+    r-lattice: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-matrix-1.7_6-r44h0e4624f_0.conda
+  hash:
+    md5: 852b37b5350a80218cf6e93b5723811e
+    sha256: 7c4865fac87d54bf07dad26759694710beee5abacdc66b24bef5d79b4503fb96
+  category: main
+  optional: false
+- name: r-matrixstats
+  version: 1.5.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-matrixstats-1.5.0-r44h54b55ab_1.conda
+  hash:
+    md5: b88ecfe0219a5dbba488de312160f982
+    sha256: 6ccf1752c744f0a735d8975b4e9b7405ad8746a85b7e059adca1059108490316
   category: main
   optional: false
 - name: r-memoise
@@ -9900,6 +10983,37 @@ package:
   hash:
     md5: ee0d79bc89d3f74dd1388167d4bc1701
     sha256: e790e72325c0a34ff9481e08b03ae191a70377622c57559c696edf17d8f802fb
+  category: main
+  optional: false
+- name: r-munsell
+  version: 0.5.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-colorspace: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-munsell-0.5.1-r44hc72bb7e_2.conda
+  hash:
+    md5: 79407650271d42d8aadfe756f89521c7
+    sha256: dc7e6deee2782e64e061976cb895f40e95105bd99b297af83ab4a7c33b17fff0
+  category: main
+  optional: false
+- name: r-mvtnorm
+  version: '1.4_2'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=14'
+    libgfortran: ''
+    libgfortran5: '>=14.3.0'
+    liblapack: '>=3.9.0,<4.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-mvtnorm-1.4_2-r44h11cdb10_0.conda
+  hash:
+    md5: d6606de45b4a7121f39d161c91baaf52
+    sha256: 237fbc510a23f400b892d98254b40dc61e5fad392089d31136bb255fd930a514
   category: main
   optional: false
 - name: r-openssl
@@ -10129,6 +11243,21 @@ package:
     sha256: 644c95b59ba3b55d82b0a2d7f3e1dbe6ce64fdf6b8728fe0f9dfe71d7f005a36
   category: main
   optional: false
+- name: r-pheatmap
+  version: 1.0.13
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-gtable: ''
+    r-rcolorbrewer: ''
+    r-scales: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-pheatmap-1.0.13-r44hc72bb7e_1.conda
+  hash:
+    md5: c1718e895f602361141206d75e4fb6b4
+    sha256: a2660ca947c064d142a7240fb95e890a0b7fc86a54bdf67dcbe1c141270d5197
+  category: main
+  optional: false
 - name: r-pillar
   version: 1.11.1
   manager: conda
@@ -10505,6 +11634,22 @@ package:
   hash:
     md5: 2882ea0da6144447729f7836116c74fd
     sha256: 9bab6c6330b92e7b4fb5037994da88368405c4f03d1e6982065da1fc425e7c17
+  category: main
+  optional: false
+- name: r-png
+  version: '0.1_9'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    libpng: '>=1.6.55,<1.7.0a0'
+    libzlib: '>=1.3.1,<2.0a0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-png-0.1_9-r44haf2892b_0.conda
+  hash:
+    md5: cf370dd7cdb94772f7a58b53ee2409df
+    sha256: 689b6e6d6f3e48dda16c38e6b5560af6f64fc335cf94abf5345f1324a90ebc2d
   category: main
   optional: false
 - name: r-praise
@@ -11306,6 +12451,18 @@ package:
     sha256: 5b71d6653e46d4f455e65d91f9a2b89dbd34be672490e614e5be8490f96715ec
   category: main
   optional: false
+- name: r-rcolorbrewer
+  version: '1.1_3'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-rcolorbrewer-1.1_3-r44h785f33e_4.conda
+  hash:
+    md5: bbaae25579d5cea71278441c0b61fde3
+    sha256: 7fe0b7282c290b8267d093cdfb4ae093d4a5fdf65f97fdac1d6db998bb96bc32
+  category: main
+  optional: false
 - name: r-rcpp
   version: 1.1.2
   manager: conda
@@ -11347,6 +12504,72 @@ package:
   hash:
     md5: c81d478481d9c91bec344e4f2092d5e4
     sha256: 588b866bd2e921cac3473316248ceb0a053298f6e0e12747c3a9db6edba5fbfd
+  category: main
+  optional: false
+- name: r-rcppannoy
+  version: 0.0.23
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-rcpp: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-rcppannoy-0.0.23-r44h3697838_0.conda
+  hash:
+    md5: 37fd9d1e2623ee98c4dd3c58664800d8
+    sha256: a1772bf5d0da848c4313d2ee8431d29041c0341c8dfb471c25d4c15a8b7743d7
+  category: main
+  optional: false
+- name: r-rcppeigen
+  version: 0.3.4.0.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=14'
+    liblapack: '>=3.9.0,<4.0a0'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: '>=1.1_0'
+    r-rcpp: '>=0.11.0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-rcppeigen-0.3.4.0.2-r44h3704496_1.conda
+  hash:
+    md5: 52a1830d3f7f5673e1b60dd0879f8f32
+    sha256: 82d1f91325a04e27ad9251d1c11b76f6594efc17be65ee2ebb0a70aff938ebde
+  category: main
+  optional: false
+- name: r-rcppml
+  version: 0.3.7.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    _openmp_mutex: '>=4.5'
+    libgcc: '>=14'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: ''
+    r-rcpp: ''
+    r-rcppeigen: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-rcppml-0.3.7.1-r44h3697838_0.conda
+  hash:
+    md5: 71e89501810265e6e10db0b021954d3c
+    sha256: 0fc5afc57c1cb418a7d44bf67e3f7a01c15ea121918382a5b31eb68e818b091d
+  category: main
+  optional: false
+- name: r-rcppprogress
+  version: 0.4.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-rcppprogress-0.4.2-r44hc72bb7e_5.conda
+  hash:
+    md5: ad372bc98da4a17019b007d4478cf558
+    sha256: c84e260735af7a87825d55e79ef8e45d03d2d0e1a98c688e2048a183229b2331
   category: main
   optional: false
 - name: r-rdtools
@@ -11824,6 +13047,26 @@ package:
     sha256: 23db8cfaf9c46b48fe8969c716887972f2d243e60268cca6999fdf1402b89f87
   category: main
   optional: false
+- name: r-rspectra
+  version: '0.16_2'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=14'
+    liblapack: '>=3.9.0,<4.0a0'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: '>=1.1_0'
+    r-rcpp: '>=0.11.5'
+    r-rcppeigen: '>=0.3.3.3.0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-rspectra-0.16_2-r44h3704496_2.conda
+  hash:
+    md5: 8051be52c7478640e8b0b3220b722dea
+    sha256: 1473d6c34c25ad46c878eb148fb72ea4c9ad5e7f37302483c84b724d1d575619
+  category: main
+  optional: false
 - name: r-rstudioapi
   version: 0.19.0
   manager: conda
@@ -11860,6 +13103,36 @@ package:
     sha256: 6c95cc310f4f7487842db7662f3c3470f0d17e21b485bea2f1344f41b8de78df
   category: main
   optional: false
+- name: r-rsvd
+  version: 1.0.5
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-rsvd-1.0.5-r44hc72bb7e_3.conda
+  hash:
+    md5: eda820fe4e70e10acef103b94c9f7279
+    sha256: 80fcd4c09f7dd28c249ca7e9d529c3944f6a461fa160fc60753031ed19afa4ad
+  category: main
+  optional: false
+- name: r-rtsne
+  version: '0.17'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libblas: '>=3.9.0,<4.0a0'
+    libgcc: '>=14'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-rcpp: '>=0.11.0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-rtsne-0.17-r44hf1899b2_3.conda
+  hash:
+    md5: 1d4b61eedc2f2c774c86120358ca1178
+    sha256: 8b228e12e1f9ca76aa217ac4309136817c03200cc939e712d134c2e6585f639e
+  category: main
+  optional: false
 - name: r-rversions
   version: 3.0.0
   manager: conda
@@ -11900,6 +13173,20 @@ package:
   hash:
     md5: 0d8372fccb5ca284a2d3707d2b9392e6
     sha256: 2a992c4e66904053dda99f56144cc675bee383223cc9d75cef25115370fa63d6
+  category: main
+  optional: false
+- name: r-s7
+  version: 0.2.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-s7-0.2.2-r44h54b55ab_0.conda
+  hash:
+    md5: bf56b6c392ae730a2328840d83f00f47
+    sha256: 8f88140a600c1d71bfae9cb51c9ae41a163d9c482faa901d223d6317d47e1071
   category: main
   optional: false
 - name: r-sass
@@ -11963,6 +13250,25 @@ package:
     sha256: 830d16da5eeb96f9a15f813a509f198ed7fb57a542bc9e1fbb2e25ad4ea47b0f
   category: main
   optional: false
+- name: r-scales
+  version: 1.4.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-farver: '>=2.0.0'
+    r-labeling: ''
+    r-lifecycle: ''
+    r-munsell: '>=0.5'
+    r-r6: ''
+    r-rcolorbrewer: ''
+    r-viridislite: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/r-scales-1.4.0-r44hc72bb7e_1.conda
+  hash:
+    md5: d5a3c79508fd7f6be657f69119265398
+    sha256: 4e28620ef9c4777bb165f87404466652baac788ccf40904d148ebd27430baa4f
+  category: main
+  optional: false
 - name: r-selectr
   version: '0.6_0'
   manager: conda
@@ -12135,6 +13441,35 @@ package:
   hash:
     md5: 1623b58446fa9b24eb5835ea5029765c
     sha256: f5e09d8f254f997b9ab52c9bf179c984fc434426637f797d54fa2660264ab6e7
+  category: main
+  optional: false
+- name: r-sitmo
+  version: 2.0.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    _openmp_mutex: '>=4.5'
+    libgcc: '>=14'
+    libstdcxx: '>=14'
+    r-base: '>=4.4,<4.5.0a0'
+    r-rcpp: '>=0.12.13'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-sitmo-2.0.2-r44h3697838_4.conda
+  hash:
+    md5: bdc86379680c5f76342667d277037b7b
+    sha256: 59a5e2a393b0a5882d12ec91bd0345c975abbd7399e5c28d064a52e5f93dcb2c
+  category: main
+  optional: false
+- name: r-snow
+  version: '0.4_4'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-snow-0.4_4-r44hc72bb7e_4.conda
+  hash:
+    md5: 8ac3bc039d3753f112dd0a3b969efc32
+    sha256: eac54b6b8dc5470710d289298214679bc2b93cc1041c8e9660c54dd8f30ba8e6
   category: main
   optional: false
 - name: r-sourcetools
@@ -12178,6 +13513,22 @@ package:
   hash:
     md5: 029dcf287259931e6e5658f351aa282f
     sha256: e76acd95aa589ca6b45a0c50ebba23dd0e0dbe2df61b75ccc9303012b4e02a97
+  category: main
+  optional: false
+- name: r-statmod
+  version: 1.5.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=14'
+    libgfortran: ''
+    libgfortran5: '>=14.3.0'
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-statmod-1.5.2-r44hb1d0f04_0.conda
+  hash:
+    md5: 3d97a86b8a106623721ebe71942b9e5a
+    sha256: 040411124f216cfed6999e36101d0722a607b5207ec21d7996130ee66e7ac5bd
   category: main
   optional: false
 - name: r-stringi
@@ -12350,6 +13701,21 @@ package:
   hash:
     md5: 6598c21500ebd827212c4380d95bb365
     sha256: da8c06c9d1d73414323ca836311507325ec6cdad2b1a9c68dc22ec61663edad5
+  category: main
+  optional: false
+- name: r-survival
+  version: '3.8_11'
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=15'
+    r-base: '>=4.4,<4.5.0a0'
+    r-matrix: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-survival-3.8_11-r44hddc5280_0.conda
+  hash:
+    md5: 444ce3ffe2c6b2b63c6a9efa90b4f6b8
+    sha256: 103bade9faaf6ede27af017dda53247ca5cdf0043f5239464e0200624a66bba2
   category: main
   optional: false
 - name: r-sys
@@ -12941,6 +14307,29 @@ package:
     sha256: aa25caadf127333f22c3c23a3acbc27e54cb466eb0b441e5a362705b126ea87a
   category: main
   optional: false
+- name: r-uwot
+  version: 0.2.5
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=15'
+    libstdcxx: '>=15'
+    r-base: '>=4.4,<4.5.0a0'
+    r-dqrng: ''
+    r-fnn: ''
+    r-irlba: ''
+    r-matrix: ''
+    r-rcpp: ''
+    r-rcppannoy: '>=0.0.17'
+    r-rcppprogress: ''
+    r-rspectra: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/r-uwot-0.2.5-r44hfa9885e_0.conda
+  hash:
+    md5: 2d829cbe84c4fa10f4790b2d03cc34f1
+    sha256: 795d29e2e3395eb841586d9bd5792abfdc67bec1549027bf5464dbefc63a21ea
+  category: main
+  optional: false
 - name: r-vctrs
   version: 0.7.3
   manager: conda
@@ -12994,6 +14383,45 @@ package:
   hash:
     md5: a91746997cd0f95ecc8640771d9722e5
     sha256: 0e0c00c84f73258b7c32f66e41a219efc66b95d724ab9b6216203c1d0821f972
+  category: main
+  optional: false
+- name: r-vipor
+  version: 0.4.7
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-vipor-0.4.7-r44hc72bb7e_2.conda
+  hash:
+    md5: a28fce9aa8a809c5703889ab21a4532d
+    sha256: a98106ba543b8fb899e5f066083bf08b7bcf2dce08892f613e56d1df5573d33a
+  category: main
+  optional: false
+- name: r-viridis
+  version: 0.6.5
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+    r-ggplot2: '>=1.0.1'
+    r-gridextra: ''
+    r-viridislite: '>=0.4.0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-viridis-0.6.5-r44hc72bb7e_2.conda
+  hash:
+    md5: 1d517508416fe6152d7587ae6fb0ff64
+    sha256: 425b5d18024150c1501b8f5f68fb3f5bcba91cfb42b5039d738250d6418503aa
+  category: main
+  optional: false
+- name: r-viridislite
+  version: 0.4.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    r-base: '>=4.4,<4.5.0a0'
+  url: https://conda.anaconda.org/conda-forge/noarch/r-viridislite-0.4.3-r44hc72bb7e_0.conda
+  hash:
+    md5: 7cd715023440607bb66311acf346b124
+    sha256: 4b81c43659edb19d326787aed0593a02d2c083e2f34b817d0a1855259c570c53
   category: main
   optional: false
 - name: r-waldo
