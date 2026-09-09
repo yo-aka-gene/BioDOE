@@ -1,0 +1,208 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# ============================================================
+# BioDOE JupyterLab controller for acrest-gpu1
+# ============================================================
+
+HOST="okano@10.64.148.45"
+PROJECT='$HOME/projects/BioDOE'
+
+CONDA='$HOME/opt/miniforge3/bin/conda'
+CONDA_ENV="mamba_biodoe"
+
+LOCAL_PORT="${LOCAL_PORT:-8888}"
+OPEN_BROWSER="${OPEN_BROWSER:-1}"
+
+READY_PREFIX="__BIODOE_JUPYTER_READY__"
+
+
+# ============================================================
+# SSH multiplexing
+#
+# First SSH:
+#   password authentication
+#   -> master connection is created
+#
+# Second SSH:
+#   reuses the existing master connection
+#   -> no additional password prompt
+#
+# The master connection remains available for 10 minutes after
+# the last SSH session using it exits.
+# ============================================================
+
+mkdir -p "$HOME/.ssh"
+
+SSH_OPTS=(
+    -o ControlMaster=auto
+    -o ControlPersist=10m
+    -o "ControlPath=$HOME/.ssh/cm-%C"
+)
+
+
+# ============================================================
+# Find an available local port
+# ============================================================
+
+if lsof -nP -iTCP:"$LOCAL_PORT" -sTCP:LISTEN >/dev/null 2>&1; then
+    LOCAL_PORT="$(
+        python3 - <<'PY'
+import socket
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+    sock.bind(("127.0.0.1", 0))
+    print(sock.getsockname()[1])
+PY
+    )"
+fi
+
+
+# ============================================================
+# Find an available remote port
+#
+# This is the first SSH connection.
+# It authenticates normally and establishes the persistent
+# master connection for subsequent SSH commands.
+# ============================================================
+
+REMOTE_PORT="$(
+    ssh "${SSH_OPTS[@]}" "$HOST" 'python3 -' <<'PY'
+import socket
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+    sock.bind(("127.0.0.1", 0))
+    print(sock.getsockname()[1])
+PY
+)"
+
+
+# ============================================================
+# Startup information
+# ============================================================
+
+echo "=========================================="
+echo "BioDOE JupyterLab"
+echo "Host       : $HOST"
+echo "Environment: $CONDA_ENV"
+echo "Local port : $LOCAL_PORT"
+echo "Remote port: $REMOTE_PORT"
+echo "URL        : waiting for JupyterLab..."
+echo "Stop       : Ctrl-C"
+echo "=========================================="
+echo
+
+
+# ============================================================
+# Launch JupyterLab
+#
+# This is the second SSH connection.
+# It reuses the master connection created above, so another
+# password prompt should not be required.
+#
+# Remote:
+#   BioDOE/
+#     .acrest-gpu1/jupyter.py
+#
+# is executed inside the mamba_biodoe environment.
+#
+# Local:
+#   127.0.0.1:LOCAL_PORT
+#       ->
+#   acrest-gpu1:127.0.0.1:REMOTE_PORT
+# ============================================================
+
+opened=0
+
+ssh "${SSH_OPTS[@]}" \
+    -T \
+    -o ExitOnForwardFailure=yes \
+    -L "127.0.0.1:${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT}" \
+    "$HOST" \
+    "cd ${PROJECT} && \
+     exec ${CONDA} run \
+         --no-capture-output \
+         -n ${CONDA_ENV} \
+         python .acrest-gpu1/jupyter.py \
+         --ip 127.0.0.1 \
+         --port ${REMOTE_PORT}" \
+    2>&1 |
+while IFS= read -r line; do
+
+    # Remove carriage return if present.
+    line="${line%$'\r'}"
+
+    printf '%s\n' "$line"
+
+
+    # --------------------------------------------------------
+    # Parse BioDOE's machine-readable Jupyter handshake
+    #
+    # Expected:
+    #
+    # __BIODOE_JUPYTER_READY__ \
+    # host=acrest-gpu1 \
+    # port=54501 \
+    # token=xxxxxxxx
+    # --------------------------------------------------------
+
+    if (( opened == 0 )) && [[ "$line" == "${READY_PREFIX}"* ]]; then
+
+        if [[ "$line" =~ port=([0-9]+) ]]; then
+            reported_port="${BASH_REMATCH[1]}"
+        else
+            echo "Could not parse remote port from Jupyter handshake." >&2
+            continue
+        fi
+
+        if [[ "$line" =~ token=([^[:space:]]+) ]]; then
+            token="${BASH_REMATCH[1]}"
+        else
+            echo "Could not parse Jupyter token from handshake." >&2
+            continue
+        fi
+
+
+        # ----------------------------------------------------
+        # Sanity check
+        # ----------------------------------------------------
+
+        if [[ "$reported_port" != "$REMOTE_PORT" ]]; then
+            echo \
+                "Warning: requested remote port ${REMOTE_PORT}, " \
+                "but Jupyter reported ${reported_port}." \
+                >&2
+        fi
+
+
+        # ----------------------------------------------------
+        # Construct laptop-side URL
+        # ----------------------------------------------------
+
+        url="http://127.0.0.1:${LOCAL_PORT}/lab?token=${token}"
+
+        echo
+        echo "=========================================="
+        echo "BioDOE JupyterLab is ready"
+        echo "URL: $url"
+        echo "=========================================="
+        echo
+
+
+        # ----------------------------------------------------
+        # Open browser on macOS
+        # ----------------------------------------------------
+
+        if (( OPEN_BROWSER == 1 )); then
+            if open "$url"; then
+                opened=1
+            else
+                echo "Browser could not be opened automatically."
+                echo "Open the URL above manually."
+                opened=1
+            fi
+        else
+            opened=1
+        fi
+    fi
+done
