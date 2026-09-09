@@ -1,0 +1,8 @@
+Package: biodoe
+Title: BioDOE
+Version: 0.1.0
+Authors@R: person("Yuji Okano", email = "yujiokano@keio.jp", role = c("aut", "cre"))
+Description: Design-of-experiments for nonlinear biological systems.
+Encoding: UTF-8
+License: UNLICENSED
+URL: https://biodoe.readthedocs.io/en/latest/r_api/

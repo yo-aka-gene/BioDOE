@@ -1,0 +1,53 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.basalcell/conda-lock.yml'
+      - 'environment.yml'
+      - 'biodoe_tools/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+      - 'poetry.lock'
+      - 'biodoe_rtools/**'
+      - 'renv.lock'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Mamba
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          use-mamba: true
+
+      - name: Install conda-lock for CI
+        shell: bash -el {0}
+        run: mamba install -n base -c conda-forge conda-lock -y
+
+      - name: Cache renv packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/renv
+          key: renv-${{ runner.os }}-${{ hashFiles('renv.lock') }}
+          restore-keys: |
+            renv-${{ runner.os }}-
+
+      - name: Install dependencies via Make
+        shell: bash -el {0}
+        run: make install
+
+      - name: Run pre-commit hooks
+        shell: bash -el {0}
+        run: mamba run -n mamba_biodoe poetry run pre-commit run --all-files
+
+      - name: Run Tests
+        shell: bash -el {0}
+        run: make test

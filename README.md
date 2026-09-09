@@ -1,0 +1,123 @@
+# BioDOE
+[<img src="https://img.shields.io/badge/DOI-WIP-FAB70C?style=flat&logo=doi">]()
+[<img src="https://img.shields.io/badge/PMID-WIP-326599?style=flat&logo=pubmed">]()
+[![Documentation Status](https://readthedocs.org/projects/biodoe/badge/?version=latest)](https://biodoe.readthedocs.io/en/latest/?badge=latest)
+[<img src="https://img.shields.io/badge/Documentation-biodoe.readthedocs.io-8CA1AF?style=flat&logo=readthedocs">](https://biodoe.readthedocs.io/en/latest/)
+[<img src="https://img.shields.io/badge/Code_Examples-Jupyter_Notebook-F37626?style=flat&logo=jupyter">](https://biodoe.readthedocs.io/en/latest/notebooks.html)
+[<img src="https://img.shields.io/badge/GitHub-yo--aka--gene/BioDOE-181717?style=flat&logo=github">](https://github.com/yo-aka-gene/BioDOE)
+<div align="center">
+<img src="./docs/_static/default_logo.png" alt="graphical abstract" width="300" height="300" title="graphical abstract">
+</div>
+Design-of-experiments for nonlinear biological systems.
+
+
+## Project Summary
+1. Write
+2. Down
+3. What
+4. You
+5. Did
+6. Here
+
+## Copyright of Data
+***describe the copyright and licensing of your dataset(s)***
+
+### Data Installation
+***describe how to install your dataset(s)***
+
+## Project Directory Tree
+```bash
+biodoe/
+    ├── .basalcell/                             # system directory
+    ├── .github/
+    │   ├── workflows/
+    │   │   └── test.yml                        # write CI/CD configuration here
+    │   └── pull_request_template.md
+    ├── biodoe_rtools/
+    │   ├── R/                                  # write your R scripts here
+    │   ├── tests/
+    │   │   ├── testthat/                       # write your R test code here
+    │   │   └── testthat.R
+    │   └── vignettes/                          # write your R vignettes here (not actively recommended)
+    │   │   └── example.Rmd
+    │   ├── _pkgdown.yml                        # write R documentation configuration here
+    │   └── DESCRIPTION                         # write R API info (semi-auto generated)
+    ├── biodoe_tools/
+    │   └── __init__.py                         # init file for your Python utility scripts for analysis
+    ├── data/                                   # store your data here
+    ├── docs/                                   # documentation
+    │   ├── _static/                            # directory for image files etc.
+    │   │   └── default_logo.png                # place holder image for docs
+    │   ├── jupyternb/                          # write .ipynb files here
+    │   │   ├── output                          # export analysis results here
+    │   │   ├── data                            # symbolic link to ../../data
+    │   │   └── tools                           # symbolic link to ../../tools
+    │   ├── conf.py                             # documentation configuration
+    │   └── index.md                            # draft for index page
+    ├── renv/                                   # R env configuration
+    ├── test/                                   # write your Python test code here
+    ├── .gitignore
+    ├── .pre-commit-config.yaml                 # configuration for linting and tests
+    ├── .readthedocs-config.yaml                # configuration for documentaion
+    ├── environment.yml                         # detailed OS env configuration
+    ├── Makefile                                # shortcut commands
+    ├── poetry.lock                             # detailed Python env configuration
+    ├── poetry.toml                             # declarative Poetry configuration
+    ├── pyproject.toml                          # declarative Python env configuration
+    ├── renv.lock                               # detailed R env configuration
+    └── README.md                               # this file
+```
+
+## Author(s)
+- Yuji Okano <[yujiokano@keio.jp](mailto:yujiokano@keio.jp)>
+    - GitHub account: [yo-aka-gene](https://github.com/yo-aka-gene)
+
+
+## Guidance for Collaborators and Researchers trying to reproduce the results
+### :warning: Prerequisites
+- This repository was created based on the [`BasalCell`](https://github.com/yo-aka-gene/BasalCell) template (version 0.4.5); please follow the `README.md` documentation for the prerequisite setup
+- **For Windows Users**: Please make sure to access this directory via `WSL`
+
+
+### Setting Up the Environment
+1. Fork this repository and clone it to your local environment.
+
+2.  Run the initialization command:
+```bash
+make init
+```
+`make init` automatically prepares the required Mamba tooling, restores or creates the environment, installs Python and R dependencies, and registers the Jupyter kernels.
+
+### Launching Jupyter Lab
+Run:
+```bash
+make launch
+```
+Then `Jupyter Lab` will pop up in your default browser.
+**Note**: Sometimes, token is required to login to Jupyter Lab for the first time.
+The default token is `biodoe`.
+
+### Adding Packages
+This project uses a unified interface to add dependencies:
+- **Python**: `make add-py PKG=name` (or `add-pydev` for dev tools)
+    - install dependencies listed in `poetry.lock` with `make install-py`
+- **R**: `make add-r PKG=name`
+- **OS**: `make add-os PKG=name` (for Mamba/system libraries)
+
+### Building Documentation
+- For a brief guide on how to write documentation across various file types, please refer to the README.md of the [`BasalCell`](https://github.com/yo-aka-gene/BasalCell) repository.
+- When creating R-related documentation, make sure to run `make docs` locally and commit the generated HTML files to the GitHub repository.
+
+
+### Update Version Tags
+```bash
+make bump-patch  # 0.1.0 -> 0.1.1
+make bump-minor  # 0.1.1 -> 0.2.0
+make bump-major  # 0.2.0 -> 1.0.0
+```
+
+### Further Guidance for Repository Management
+- Refer to the [`BasalCell`](https://github.com/yo-aka-gene/BasalCell) repository for detailed descriptions
+- Refer to the [`BasalCellDemo`](https://github.com/yo-aka-gene/BasalCellDemo) repository for a real-world example of scRNA-seq data analysis using Python and R
+---
+This project was created with [Cookiecutter](https://github.com/cookiecutter/cookiecutter) and [BasalCell](https://github.com/yo-aka-gene/BasalCell) version 0.4.5
