@@ -1,14 +1,19 @@
 # BioDOE
-[<img src="https://img.shields.io/badge/DOI-WIP-FAB70C?style=flat&logo=doi">]()
+[<img src="https://img.shields.io/badge/DOI-10.64898/2025.12.28.696309-FAB70C?style=flat&logo=doi">](https://doi.org/10.64898/2025.12.28.696309)
 [<img src="https://img.shields.io/badge/PMID-WIP-326599?style=flat&logo=pubmed">]()
 [![Documentation Status](https://readthedocs.org/projects/biodoe/badge/?version=latest)](https://biodoe.readthedocs.io/en/latest/?badge=latest)
 [<img src="https://img.shields.io/badge/Documentation-biodoe.readthedocs.io-8CA1AF?style=flat&logo=readthedocs">](https://biodoe.readthedocs.io/en/latest/)
 [<img src="https://img.shields.io/badge/Code_Examples-Jupyter_Notebook-F37626?style=flat&logo=jupyter">](https://biodoe.readthedocs.io/en/latest/notebooks.html)
 [<img src="https://img.shields.io/badge/GitHub-yo--aka--gene/BioDOE-181717?style=flat&logo=github">](https://github.com/yo-aka-gene/BioDOE)
 <div align="center">
-<img src="./docs/_static/default_logo.png" alt="graphical abstract" width="300" height="300" title="graphical abstract">
+<img src="./docs/_static/perturb-seq_concept.svg" alt="graphical abstract" width="300" height="300" title="graphical abstract">
 </div>
 Design-of-experiments for nonlinear biological systems.
+
+### Related Repositories
+- [<img src="https://img.shields.io/badge/GitHub-yo--aka--gene/WhyDOE-181717?style=flat&logo=github">](https://github.com/yo-aka-gene/WhyDOE)
+- [<img src="https://img.shields.io/badge/GitHub-yo--aka--gene/WhyDOE__RWD__Analysis-181717?style=flat&logo=github">](https://github.com/yo-aka-gene/WhyDOE_RWD_Analysis)
+- [<img src="https://img.shields.io/badge/GitHub-yo--aka--gene/ScanpEx-181717?style=flat&logo=github">](https://github.com/yo-aka-gene/ScanpEx)
 
 
 ## Project Summary
