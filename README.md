@@ -10,10 +10,32 @@
 </div>
 Design-of-experiments for nonlinear biological systems.
 
-### Related Repositories
+### Repository Structure and Related Repositories
+
+`BioDOE` is the canonical repository for the current implementation and
+reproducible analyses associated with this project. It consolidates and
+refactors code that was previously distributed across the repositories below.
+
 - [<img src="https://img.shields.io/badge/GitHub-yo--aka--gene/WhyDOE-181717?style=flat&logo=github">](https://github.com/yo-aka-gene/WhyDOE)
+  **Role:** Original repository for the methodological and simulation-based
+  analyses, including the introduction of design-of-experiments (DoE) to
+  Perturb-seq simulations, evaluation of experimental designs, and development
+  of the PBSI framework.
+
 - [<img src="https://img.shields.io/badge/GitHub-yo--aka--gene/WhyDOE__RWD__Analysis-181717?style=flat&logo=github">](https://github.com/yo-aka-gene/WhyDOE_RWD_Analysis)
+  **Role:** Analysis of real-world single-cell RNA-seq datasets used to examine
+  and sanity-check the biological interpretation of PBSI and related
+  network-topology-based findings.
+
 - [<img src="https://img.shields.io/badge/GitHub-yo--aka--gene/ScanpEx-181717?style=flat&logo=github">](https://github.com/yo-aka-gene/ScanpEx)
+  **Role:** Reusable analysis infrastructure separated from the
+  project-specific DoE framework. Generic utilities and technical components
+  originating from `WhyDOE` and `WhyDOE_RWD_Analysis` are progressively moved
+  to ScanpEx when they are useful beyond the scope of BioDOE.
+
+The legacy `WhyDOE` and `WhyDOE_RWD_Analysis` repositories are retained for
+provenance. New development, refactoring, and reproducible execution of the
+study are centered on `BioDOE`.
 
 
 ## Project Summary
@@ -23,6 +45,19 @@ Design-of-experiments for nonlinear biological systems.
 4. You
 5. Did
 6. Here
+
+
+### Citation
+```
+@article{okano2025design,
+  title={Design-of-Experiments for Nonlinear, Multivariate Biology: Rethinking Experimental Design through Perturb-seq},
+  author={Okano, Yuji and Ishikawa, Tetsuo and Sato, Yasunori and Okano, Hideyuki and Sakurada, Kazuhiro},
+  journal={bioRxiv},
+  pages={2025--12},
+  year={2025},
+  publisher={Cold Spring Harbor Laboratory}
+}
+```
 
 ## Copyright of Data
 ***describe the copyright and licensing of your dataset(s)***
