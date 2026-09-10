@@ -1,5 +1,58 @@
 ### dunnett_power.R ###
 
+#' Calculate analytical power for Dunnett's multiple-comparison test
+#'
+#' @description
+#' Calculates per-comparison and familywise statistical power for multiple
+#' treatment-versus-control comparisons using Dunnett's test.
+#'
+#' @details
+#' The function assumes a single control group and multiple treatment groups
+#' with a common residual standard deviation. Each treatment group is assumed
+#' to have the same sample size specified by `nt`.
+#'
+#' Correlations among treatment-versus-control contrasts are explicitly
+#' accounted for because all contrasts share the same control group. The
+#' two-sided Dunnett critical value is obtained from the multivariate
+#' t distribution using `mvtnorm::qmvt()`.
+#'
+#' Per-comparison power is calculated from the corresponding noncentral
+#' t distributions. Familywise power is defined as the probability that
+#' at least one treatment-versus-control comparison exceeds the Dunnett
+#' critical threshold.
+#'
+#' @param mu0 Numeric scalar. Expected mean of the control group.
+#' @param mu_t Numeric vector. Expected means of the treatment groups.
+#' @param n0 Integer. Sample size of the control group.
+#' @param nt Integer. Sample size of each treatment group.
+#' @param sigma Numeric scalar. Common residual standard deviation.
+#' @param alpha Numeric scalar. Familywise type I error rate.
+#'
+#' @return A named list containing:
+#' \describe{
+#'   \item{df}{Residual degrees of freedom.}
+#'   \item{crit}{Two-sided Dunnett critical value.}
+#'   \item{per_comparison_power}{
+#'     Numeric vector of power values for individual
+#'     treatment-versus-control comparisons.
+#'   }
+#'   \item{familywise_power}{
+#'     Numeric scalar giving the probability that at least one comparison
+#'     exceeds the Dunnett critical threshold.
+#'   }
+#' }
+#'
+#' @export
+#'
+#' @examples
+#' dunnett_power_analytic(
+#'   mu0 = 0,
+#'   mu_t = c(0.5, 1.0, 1.5),
+#'   n0 = 5,
+#'   nt = 5,
+#'   sigma = 1,
+#'   alpha = 0.05
+#' )
 dunnett_power_analytic <- function(
     mu0,
     mu_t,
