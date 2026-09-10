@@ -53,6 +53,11 @@ pathlib.Path: Absolute path to the directory storing raw and intermediate proces
 for the project.
 """
 
+R_TOOLS = Path(__file__).resolve().parent.parent.parent / "biodoe_rtools/R"
+"""
+pathlib.Path: Absolute path to the directory storing R scripts
+"""
+
 heatmap_pref = dict(
     vmax=1,
     vmin=0,
@@ -112,6 +117,7 @@ __all__ = [
     kwarg_save_transparent_fig,
     OUTPUT_DIR,
     DATA_DIR,
+    R_TOOLS,
     heatmap_pref,
     dsmat_pref,
     kwarg_bootstrap,
