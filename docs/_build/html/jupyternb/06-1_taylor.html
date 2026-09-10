@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taylor’s Power Law &mdash; BioDOE 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="06-2_residual_plots.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="05-2_pbsi_esm9.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="../index.html">
+
+              <img src="../_static/default_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Analysis Code Gallery</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../notebooks.html">BioDOE Analyses Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#design-matrices-and-their-statistical-properties">#1 Design Matrices and Their Statistical Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#simulating-perturb-seq-experiments">#2 Simulating Perturb-seq Experiments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#benchmarking-experimental-designs-with-perturb-seq-simulators">#3 Benchmarking Experimental Designs with Perturb-seq Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#identifying-pbsi-with-esm4">#4 Identifying PBSI with ESM4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#validating-pbsi-with-esm9">#5 Validating PBSI with ESM9</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../notebooks.html#simulator-properties">#6 Simulator Properties</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Taylor’s Power Law</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#other-schematics-generated-using-python">#7 Other Schematics Generated Using Python</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Auxiliary Python Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../auxiliary_api/modules.html">biodoe_tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BioDOE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../notebooks.html">BioDOE Analyses Code</a></li>
+      <li class="breadcrumb-item active">Taylor’s Power Law</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/jupyternb/06-1_taylor.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <section id="Taylor's-Power-Law">
+<h1>Taylor’s Power Law<a class="headerlink" href="#Taylor's-Power-Law" title="Link to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTuple</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.notebook</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.design</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlackettBurman</span><span class="p">,</span> <span class="n">DOE</span><span class="p">,</span> <span class="n">FullFactorial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">bio_multicomp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.preferences</span><span class="w"> </span><span class="kn">import</span> <span class="n">kwarg_savefig</span><span class="p">,</span> <span class="n">outputdir</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractSimulator</span><span class="p">,</span> <span class="n">Sim1</span><span class="p">,</span> <span class="n">Circuit</span><span class="p">,</span> <span class="n">MLR</span><span class="p">,</span> <span class="n">Sparse</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">savefig</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">out</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">outputdir</span>
+
+<span class="n">conf</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noise_conf</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">kwarg_err</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">.5</span><span class="p">)),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">kwarg_err</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">kwarg_err</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">kwarg_err</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">4</span><span class="p">)),</span>
+<span class="p">]</span>
+
+<span class="n">noise_names</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s2">"$\sigma=0.5$"</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">"$\sigma=1$"</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">"$\sigma=2$"</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">"$\sigma=4$"</span>
+<span class="p">]</span>
+
+<span class="n">simulators</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">sim1</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">(),</span> <span class="p">[</span><span class="n">Sim1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">noise_conf</span><span class="p">))),</span>
+    <span class="n">circuit</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">(),</span> <span class="p">[</span><span class="n">Circuit</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">noise_conf</span><span class="p">))),</span>
+    <span class="n">sparse</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">(),</span> <span class="p">[</span><span class="n">Sparse</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">noise_conf</span><span class="p">)))</span>
+<span class="p">)</span>
+
+<span class="n">exmatrix</span> <span class="o">=</span> <span class="n">FullFactorial</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="n">n_factor</span><span class="o">=</span><span class="mi">9</span><span class="p">)()</span>
+<span class="n">n_rep</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">simulators</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">noise_conf</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">simulators</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">noise_names</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">.35</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">.35</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model_list</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">simulators</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">simulators</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">model_list</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">model_list</span><span class="p">)):</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">noise_conf</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">ii</span><span class="p">])</span>
+        <span class="n">seeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">exmatrix</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_rep</span><span class="p">)</span>
+
+        <span class="n">expressions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">iii</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seeds</span><span class="p">):</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">exmatrix</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">iii</span> <span class="o">//</span> <span class="n">n_rep</span><span class="p">,</span> <span class="p">:],</span> <span class="n">random_state</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+            <span class="n">expressions</span> <span class="o">+=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="p">[[</span><span class="n">model</span><span class="o">.</span><span class="n">y</span><span class="p">]]</span>
+
+        <span class="n">ym</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rep</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">yv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rep</span><span class="p">)</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">pos_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ym</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">ym</span><span class="p">,</span> <span class="n">yv</span> <span class="o">=</span> <span class="n">ym</span><span class="p">[</span><span class="n">pos_idx</span><span class="p">],</span> <span class="n">yv</span><span class="p">[</span><span class="n">pos_idx</span><span class="p">]</span>
+
+        <span class="n">lrm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+        <span class="n">lrm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ym</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">yv</span><span class="p">))</span>
+
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ym</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">yv</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Greens</span><span class="p">((</span><span class="n">ii</span> <span class="o">+</span> <span class="mf">1.5</span><span class="p">)</span><span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">noise_conf</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)),</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">noise_names</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.7</span><span class="p">,</span>
+            <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">xlim</span><span class="p">,</span> <span class="n">lrm</span><span class="o">.</span><span class="n">coef_</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span> <span class="o">+</span> <span class="n">lrm</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span>
+            <span class="n">lw</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">".2"</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+            <span class="c1"># title=model.name,</span>
+            <span class="n">xlabel</span><span class="o">=</span><span class="s2">"$\log$"</span> <span class="o">+</span> <span class="s2">"E"</span> <span class="o">+</span> <span class="s2">"$[y]$"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"$\log$"</span> <span class="o">+</span> <span class="s2">"Var"</span> <span class="o">+</span> <span class="s2">"$[y]$"</span>
+        <span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="s2">"small"</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="nb">max</span><span class="p">(</span><span class="n">xlim</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">ylim</span><span class="p">),</span>
+            <span class="sa">r</span><span class="s2">"$R^2=$"</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">lrm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ym</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">yv</span><span class="p">)),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>  <span class="o">+</span> <span class="s2">"  </span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> \
+            <span class="sa">r</span><span class="s2">"$\beta=$"</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">lrm</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">  </span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span>
+        <span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">xlim</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">*</span><span class="n">ylim</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/taylor.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "03df622307b74a9d9b3bef88b4e381be", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e7ce478c59034afe9a74986ab950b13f", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6ad8112d89104cd5b096bea65ec1b84b", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "53c5a21d44a948fe94f35f2d870df120", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_06-1_taylor_5_4.png" src="../_images/jupyternb_06-1_taylor_5_4.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="05-2_pbsi_esm9.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="06-2_residual_plots.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>

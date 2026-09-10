@@ -1,0 +1,1222 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PB &mdash; BioDOE 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sim1 with C+LOO" href="02-1_model_phi_with_cloo.html" />
+    <link rel="prev" title="BioDOE Analyses Code" href="../notebooks.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="../index.html">
+
+              <img src="../_static/default_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Analysis Code Gallery</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../notebooks.html">BioDOE Analyses Code</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../notebooks.html#design-matrices-and-their-statistical-properties">#1 Design Matrices and Their Statistical Properties</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Full-Factorial">Full Factorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#D-optimization">D-optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#simulating-perturb-seq-experiments">#2 Simulating Perturb-seq Experiments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#benchmarking-experimental-designs-with-perturb-seq-simulators">#3 Benchmarking Experimental Designs with Perturb-seq Simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#identifying-pbsi-with-esm4">#4 Identifying PBSI with ESM4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#validating-pbsi-with-esm9">#5 Validating PBSI with ESM9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#simulator-properties">#6 Simulator Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#other-schematics-generated-using-python">#7 Other Schematics Generated Using Python</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Auxiliary Python Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../auxiliary_api/modules.html">biodoe_tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BioDOE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../notebooks.html">BioDOE Analyses Code</a></li>
+      <li class="breadcrumb-item active">PB</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/jupyternb/01_design_matrices.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTuple</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mcolors</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.design</span><span class="w"> </span><span class="kn">import</span> <span class="n">CLOO</span><span class="p">,</span> <span class="n">PlackettBurman</span><span class="p">,</span> <span class="n">FullFactorial</span><span class="p">,</span> <span class="n">DOptimization</span><span class="p">,</span> <span class="n">d_criterion</span><span class="p">,</span> <span class="n">DOCLOO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">correlation_heatmap</span><span class="p">,</span> <span class="n">design_heatmap</span><span class="p">,</span> <span class="n">bio_scatterview</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.preferences</span><span class="w"> </span><span class="kn">import</span> <span class="n">kwarg_savefig</span><span class="p">,</span> <span class="n">OUTPUT_DIR</span><span class="p">,</span> <span class="n">heatmap_pref</span><span class="p">,</span> <span class="n">dsmat_pref</span><span class="p">,</span> <span class="n">textcolor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.preferences.cmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">sim1</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sim1</span><span class="p">,</span> <span class="n">MLR</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 10</span>
+<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> pandas <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> pd
+<span class="ansi-green-fg">      7</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> seaborn <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> sns
+<span class="ansi-green-fg">      8</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> statsmodels.api <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> sm
+<span class="ansi-green-fg">      9</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">10</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> biodoe_tools.design <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> CLOO, PlackettBurman, FullFactorial, DOptimization, d_criterion, DOCLOO
+<span class="ansi-green-fg">     11</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> biodoe_tools.plot <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> correlation_heatmap, design_heatmap, bio_scatterview
+<span class="ansi-green-fg">     12</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> biodoe_tools.preferences <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> kwarg_savefig, OUTPUT_DIR, heatmap_pref, dsmat_pref, textcolor
+<span class="ansi-green-fg">     13</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> biodoe_tools.preferences.cmap <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> sim1
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/projects/BioDOE/docs/jupyternb/biodoe_tools/__init__.py:1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> design
+<span class="ansi-green-fg">      2</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> ml
+<span class="ansi-green-fg">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> plot
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/projects/BioDOE/docs/jupyternb/biodoe_tools/design/__init__.py:4</span>
+<span class="ansi-green-fg">      2</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">_cloo</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> CLOO
+<span class="ansi-green-fg">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">_fullfact</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> FullFactorial
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">_pb</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> PlackettBurman
+<span class="ansi-green-fg">      5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">_d_optimization</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> d_criterion, DOptimization
+<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">_docloo</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> DOCLOO
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/projects/BioDOE/docs/jupyternb/biodoe_tools/design/_pb.py:2</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">numpy</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">np</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pyDOE</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> pbdesign
+<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">_abstract</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> DesignMatrix, DOE
+<span class="ansi-green-fg">      7</span> <span class="ansi-bold" style="color: rgb(0,135,0)">class</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">PlackettBurman</span>(DOE):
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;pyDOE&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">savefig</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">out</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OUTPUT_DIR</span>
+
+<span class="n">conf</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">n_factor</span> <span class="o">=</span> <span class="mi">9</span>
+
+<span class="n">design_heatmap</span><span class="p">(</span>
+    <span class="n">design</span><span class="o">=</span><span class="n">CLOO</span><span class="p">,</span> <span class="n">n_factor</span><span class="o">=</span><span class="n">n_factor</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">dsmat_pref</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/n=</span><span class="si">{</span><span class="n">n_factor</span><span class="si">}</span><span class="s2">.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/jovyan/jupyternb/doe_modules/plot/_design_matrix.py:29: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  annot=dsm.applymap(
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_2_1.png" src="../_images/jupyternb_01_design_matrices_2_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="n">correlation_heatmap</span><span class="p">(</span>
+    <span class="n">design</span><span class="o">=</span><span class="n">CLOO</span><span class="p">,</span> <span class="n">n_factor</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">heatmap_pref</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/corr_n=</span><span class="si">{</span><span class="n">n_factor</span><span class="si">}</span><span class="s2">.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_3_0.png" src="../_images/jupyternb_01_design_matrices_3_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>if you wish to have part-by-part visualizations</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots(figsize=(3, 3))</span>
+
+<span class="c1"># sns.heatmap(</span>
+<span class="c1">#     CLOO().get_exmatrix(9)().corr().abs(), ax=ax, **heatmap_pref</span>
+<span class="c1"># )</span>
+
+<span class="c1"># ax.set(title="Main effects \nvs main effects")</span>
+
+<span class="c1"># if conf.savefig:</span>
+<span class="c1">#     fig.savefig(f"{conf.out}/main_n={n_factor}", **kwarg_savefig)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots(figsize=(9, 2))</span>
+
+<span class="c1"># sns.heatmap(</span>
+<span class="c1">#     CLOO().get_exmatrix(9).interactions().corr().abs().iloc[:9, 9:],</span>
+<span class="c1">#     ax=ax, **heatmap_pref</span>
+<span class="c1"># )</span>
+
+<span class="c1"># ax.set(title="Main effects vs interaction terms")</span>
+
+<span class="c1"># if conf.savefig:</span>
+<span class="c1">#     fig.savefig(f"{conf.out}/m&amp;i_n={n_factor}", **kwarg_savefig)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots(figsize=(9, 7))</span>
+
+<span class="c1"># sns.heatmap(</span>
+<span class="c1">#     CLOO().get_exmatrix(9).interactions().corr().abs().iloc[9:, 9:],</span>
+<span class="c1">#     ax=ax, **heatmap_pref</span>
+<span class="c1"># )</span>
+
+<span class="c1"># ax.set(title="Interaction terms vs interaction terms")</span>
+
+<span class="c1"># if conf.savefig:</span>
+<span class="c1">#     fig.savefig(f"{conf.out}/interaction_n={n_factor}", **kwarg_savefig)</span>
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li><p>if you wish to see correlation heatmaps for other ns</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for n_f in [2, 3, 4, 5, 6, 7, 8]:</span>
+<span class="c1">#     fig, ax = plt.subplots(figsize=(n_f+2, n_f))</span>
+
+<span class="c1">#     correlation_heatmap(</span>
+<span class="c1">#         design=CLOO, n_factor=n_f, ax=ax, **heatmap_pref</span>
+<span class="c1">#     )</span>
+<span class="c1">#     ax.set_title(f"C+LOO design (n={n_f})", fontsize="medium" if n_f == 2 else "large")</span>
+
+<span class="c1">#     if conf.savefig:</span>
+<span class="c1">#         fig.savefig(f"{conf.out}/n={n_f}", **kwarg_savefig)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main1_1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main1_2</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main1_int12</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main1_int23</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">int12_12</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">int12_13</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">int12_34</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">4</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1m1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">main1_1</span><span class="p">)</span>
+<span class="n">m1m2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">main1_2</span><span class="p">)</span>
+<span class="n">m1i12</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">main1_int12</span><span class="p">)</span>
+<span class="n">m1i23</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">main1_int23</span><span class="p">)</span>
+<span class="n">i12i12</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">int12_12</span><span class="p">)</span>
+<span class="n">i12i13</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">int12_13</span><span class="p">)</span>
+<span class="n">i12i34</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">int12_34</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m1m2</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$\rho_{i,j}$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m1i12</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$\rho_{i\times j,i}$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m1i23</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$\rho_{i\times j,k}$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">i12i13</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$\rho_{i\times j,i\times l}$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">i12i34</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$\rho_{i\times j,k\times l}$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"center left"</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">.5</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Correlation coefficients"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"n: Num. of factors"</span><span class="p">);</span>
+
+<span class="c1"># if conf.savefig:</span>
+<span class="c1">#         fig.savefig(f"{conf.out}/corr", **kwarg_savefig)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_13_0.png" src="../_images/jupyternb_01_design_matrices_13_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m1m2</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$|\rho_{i,j}|$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m1i12</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$|\rho_{i\times j,i}|$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m1i23</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$|\rho_{i\times j,k}|$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i12i13</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$|\rho_{i\times j,i\times l}|$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i12i34</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$|\rho_{i\times j,k\times l}|$"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m1m2</span><span class="p">(</span><span class="n">n</span><span class="p">))[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="mf">.04</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"$|\rho_{i,j}|$"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"small"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">10.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m1i12</span><span class="p">(</span><span class="n">n</span><span class="p">))[</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.03</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"$|\rho_{i\times j,i}|$"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"small"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m1i23</span><span class="p">(</span><span class="n">n</span><span class="p">))[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">.04</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"$|\rho_{i\times j,k}|$"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C2"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"small"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">10.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i12i13</span><span class="p">(</span><span class="n">n</span><span class="p">))[</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.03</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"$|\rho_{i\times j,i\times l}|$"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C3"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"small"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i12i34</span><span class="p">(</span><span class="n">n</span><span class="p">))[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="mf">.04</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"$|\rho_{i\times j,k\times l}|$"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C4"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"small"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"|Correlation coefficients|"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"n: Num. of factors"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/corr_abs.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_14_0.png" src="../_images/jupyternb_01_design_matrices_14_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.outliers_influence</span><span class="w"> </span><span class="kn">import</span> <span class="n">variance_inflation_factor</span> <span class="k">as</span> <span class="n">vif</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">vif_cloo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">vif</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">CLOO</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="n">n</span><span class="p">)()</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">vif_pb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">vif</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">PlackettBurman</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="n">n</span><span class="p">)()</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">y_cloo</span><span class="p">,</span> <span class="n">y_pb</span> <span class="o">=</span> <span class="n">vif_cloo</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">vif_pb</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_cloo</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"C+LOO"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pb</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"PB"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">.95</span><span class="p">,</span> <span class="mf">2.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"VIF"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"n: Num. of factors"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">y_cloo</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">.05</span><span class="p">,</span> <span class="s2">"C+LOO"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">y_pb</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">.05</span><span class="p">,</span> <span class="s2">"PB"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/vif.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_16_0.png" src="../_images/jupyternb_01_design_matrices_16_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">cond_cloo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">CLOO</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="n">n</span><span class="p">)()</span><span class="o">.</span><span class="n">values</span><span class="p">)))</span>
+<span class="n">cond_pb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">PlackettBurman</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="n">n</span><span class="p">)()</span><span class="o">.</span><span class="n">values</span><span class="p">)))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">y_cloo</span><span class="p">,</span> <span class="n">y_pb</span> <span class="o">=</span> <span class="n">cond_cloo</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">cond_pb</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_cloo</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"C+LOO"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pb</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"PB"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Condition numbers"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"n: Num. of factors"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_cloo</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"C+LOO"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">y_pb</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"PB"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/condition_number.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_17_0.png" src="../_images/jupyternb_01_design_matrices_17_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">interaction_absorption</span><span class="p">(</span><span class="n">design</span><span class="p">,</span> <span class="n">n_factor</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">n_rep</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">design</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="n">n_factor</span><span class="p">)</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">mat</span><span class="p">:</span> <span class="n">mat</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">mat</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">mat</span><span class="p">)</span> <span class="o">@</span> <span class="n">mat</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">PX</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_rep</span><span class="p">)))</span>
+    <span class="n">X_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="o">.</span><span class="n">interactions</span><span class="p">(</span><span class="n">order</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">n_factor</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_rep</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">X_int</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">PX</span> <span class="o">@</span> <span class="n">X_int</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">X_int</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">abs_cloo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">interaction_absorption</span><span class="p">(</span><span class="n">CLOO</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">abs_pb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">interaction_absorption</span><span class="p">(</span><span class="n">PlackettBurman</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">abs_ff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">interaction_absorption</span><span class="p">(</span><span class="n">FullFactorial</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">abs_cloo</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"C+LOO"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">abs_pb</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"PB"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">abs_ff</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"FF"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C3"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Interaction Leakage"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"n: Num. of factors"</span><span class="p">)</span>
+<span class="c1"># ax.legend()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">abs_cloo</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="mf">.03</span><span class="p">,</span> <span class="s2">"C+LOO"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">abs_pb</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="mf">.03</span><span class="p">,</span> <span class="s2">"PB"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">abs_ff</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="mf">.03</span><span class="p">,</span> <span class="s2">"FF"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C3"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/interaction_leakage.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_19_0.png" src="../_images/jupyternb_01_design_matrices_19_0.png" />
+</div>
+</div>
+<hr class="docutils" />
+<section id="PB">
+<h1>PB<a class="headerlink" href="#PB" title="Link to this heading"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">n_factor</span> <span class="o">=</span> <span class="mi">9</span>
+
+<span class="n">design_heatmap</span><span class="p">(</span>
+    <span class="n">design</span><span class="o">=</span><span class="n">PlackettBurman</span><span class="p">,</span> <span class="n">n_factor</span><span class="o">=</span><span class="n">n_factor</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">dsmat_pref</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/pb_n=</span><span class="si">{</span><span class="n">n_factor</span><span class="si">}</span><span class="s2">.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/jovyan/jupyternb/doe_modules/plot/_design_matrix.py:29: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  annot=dsm.applymap(
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_21_1.png" src="../_images/jupyternb_01_design_matrices_21_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="n">correlation_heatmap</span><span class="p">(</span>
+    <span class="n">design</span><span class="o">=</span><span class="n">PlackettBurman</span><span class="p">,</span> <span class="n">n_factor</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">heatmap_pref</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/pb_corr_n=</span><span class="si">{</span><span class="n">n_factor</span><span class="si">}</span><span class="s2">.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_22_0.png" src="../_images/jupyternb_01_design_matrices_22_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">n_rep</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">cloo</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">CLOO</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="mi">9</span><span class="p">)()]</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rep</span><span class="p">)]</span>
+<span class="n">pb</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">PlackettBurman</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="mi">9</span><span class="p">)()]</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rep</span><span class="p">)]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rep</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">cloo</span><span class="p">)),</span> <span class="nb">float</span><span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"C+LOO"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"s"</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rep</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">pb</span><span class="p">)),</span> <span class="nb">float</span><span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"PB"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"s"</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rep</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rep</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">"log"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">())</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"upper right"</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">"N: Num. of replication"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"D-criterion"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/benchmark_d.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_23_0.png" src="../_images/jupyternb_01_design_matrices_23_0.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="Full-Factorial">
+<h1>Full Factorial<a class="headerlink" href="#Full-Factorial" title="Link to this heading"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n_factor</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+
+    <span class="n">figsize</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="n">n_factor</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">[</span><span class="n">n_factor</span> <span class="o">-</span> <span class="mi">2</span><span class="p">])</span>
+
+        <span class="n">design_heatmap</span><span class="p">(</span>
+            <span class="n">design</span><span class="o">=</span><span class="n">FullFactorial</span><span class="p">,</span> <span class="n">n_factor</span><span class="o">=</span><span class="n">n_factor</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">dsmat_pref</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/ff_n=</span><span class="si">{</span><span class="n">n_factor</span><span class="si">}</span><span class="s2">.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/jovyan/jupyternb/doe_modules/plot/_design_matrix.py:29: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  annot=dsm.applymap(
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_25_1.png" src="../_images/jupyternb_01_design_matrices_25_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n_f</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">n_f</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">n_f</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_f</span><span class="p">))</span>
+
+        <span class="n">correlation_heatmap</span><span class="p">(</span>
+            <span class="n">design</span><span class="o">=</span><span class="n">FullFactorial</span><span class="p">,</span> <span class="n">n_factor</span><span class="o">=</span><span class="n">n_f</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">heatmap_pref</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/ff_corr_n=</span><span class="si">{</span><span class="n">n_f</span><span class="si">}</span><span class="s2">.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_26_0.png" src="../_images/jupyternb_01_design_matrices_26_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">n_cloo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">n_pb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">//</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">n_cloo2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">n_pb2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">8</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">//</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">n_cloo3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">n_pb3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">12</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">//</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">lim</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">lim</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n_cloo</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"C+LOO"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n_pb</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"PB"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_cloo</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">-</span> <span class="mf">.6</span><span class="p">,</span> <span class="s2">"C+LOO"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_pb</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mf">.6</span><span class="p">,</span> <span class="s2">"PB"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Num. of trials"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"n: Num. of factors"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/n_max.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_27_0.png" src="../_images/jupyternb_01_design_matrices_27_0.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="D-optimization">
+<h1>D-optimization<a class="headerlink" href="#D-optimization" title="Link to this heading"></a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">n_factor</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">n_trials</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="n">design_heatmap</span><span class="p">(</span>
+    <span class="n">design</span><span class="o">=</span><span class="n">DOCLOO</span><span class="p">,</span> <span class="n">n_factor</span><span class="o">=</span><span class="n">n_factor</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">design_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">"n_total"</span><span class="p">:</span> <span class="n">n_trials</span><span class="p">},</span>
+    <span class="o">**</span><span class="n">dsmat_pref</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_title</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">"small"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/doptim_</span><span class="si">{</span><span class="n">n_trials</span><span class="si">}</span><span class="s2">trials.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/jovyan/jupyternb/doe_modules/plot/_design_matrix.py:29: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+  annot=dsm.applymap(
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_29_1.png" src="../_images/jupyternb_01_design_matrices_29_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="n">correlation_heatmap</span><span class="p">(</span>
+    <span class="n">design</span><span class="o">=</span><span class="n">DOCLOO</span><span class="p">,</span> <span class="n">n_factor</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">design_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">"n_total"</span><span class="p">:</span> <span class="mi">12</span><span class="p">},</span>
+    <span class="o">**</span><span class="n">heatmap_pref</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/corr_doptim_</span><span class="si">{</span><span class="n">n_trials</span><span class="si">}</span><span class="s2">trials.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_30_0.png" src="../_images/jupyternb_01_design_matrices_30_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lst_mat</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">CLOO</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="p">]</span> <span class="o">+</span> <span class="p">[</span>
+    <span class="n">DOCLOO</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lst_pb</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">PlackettBurman</span><span class="p">()</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="p">]</span> <span class="o">+</span> <span class="p">[</span>
+    <span class="n">DOptimization</span><span class="p">(</span>
+        <span class="n">base</span><span class="o">=</span><span class="n">PlackettBurman</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">get_exmatrix</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">38</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">duplicate</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">arr</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">triplicate</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">arr</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">)),</span> <span class="nb">float</span><span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"DO-C+LOO (N=1)"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">)),</span> <span class="nb">float</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_pb</span><span class="p">)),</span> <span class="nb">float</span><span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"DO-PB (N=1)"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_pb</span><span class="p">)),</span> <span class="nb">float</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">originals</span> <span class="o">=</span> <span class="p">[</span><span class="n">lst_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lst_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">originals</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">".2"</span><span class="p">,</span> <span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"original designs"</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">"Num. of trials"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"D-criterion"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">"log"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">xlim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/doptim.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_35_0.png" src="../_images/jupyternb_01_design_matrices_35_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">)),</span> <span class="nb">float</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span>
+    <span class="c1"># , linewidth=1</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">)),</span> <span class="nb">float</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[:</span><span class="mi">16</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">duplicate</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">))),</span> <span class="nb">float</span><span class="p">)[:</span><span class="mi">16</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span>
+    <span class="c1"># , linewidth=2</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">duplicate</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">))),</span> <span class="nb">float</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">16</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[:</span><span class="mi">7</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">triplicate</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">))),</span> <span class="nb">float</span><span class="p">)[:</span><span class="mi">7</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span>
+    <span class="c1"># , linewidth=3</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">triplicate</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">))),</span> <span class="nb">float</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">7</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"DO-C+LOO"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"PB"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,)</span>
+
+<span class="n">originals</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">[</span>
+    <span class="n">duplicate</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span>
+    <span class="n">triplicate</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="p">]</span> <span class="o">+</span> <span class="p">[</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="n">duplicate</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span>
+    <span class="n">triplicate</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">36</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="n">originals</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">".2"</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"C1"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"original designs"</span>
+<span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+
+<span class="n">pb_temp</span> <span class="o">=</span> <span class="p">[</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">duplicate</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">triplicate</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">]))]</span>
+
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"N=1"</span><span class="p">,</span> <span class="s2">"N=2"</span><span class="p">,</span> <span class="s2">"N=3"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">xs2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">36</span><span class="p">]</span>
+<span class="n">ys2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="mf">5e-11</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">d_criterion</span><span class="p">,</span> <span class="n">pb_temp</span><span class="p">),</span> <span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"do"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"pb"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">idf</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xs2</span><span class="p">,</span> <span class="n">ys2</span><span class="p">,</span> <span class="n">texts</span><span class="p">,</span> <span class="n">identifier</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"C0"</span> <span class="k">if</span> <span class="n">idf</span> <span class="o">==</span> <span class="s2">"do"</span> <span class="k">else</span> <span class="s2">"C1"</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"D-criterion"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"$n_{\max}$: total num. of trials"</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">"log"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">savefig</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conf</span><span class="o">.</span><span class="n">out</span><span class="si">}</span><span class="s2">/doptim_nrep.pdf"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwarg_savefig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_36_0.png" src="../_images/jupyternb_01_design_matrices_36_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">mat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">vif</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)]),</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">)),</span> <span class="nb">float</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"DO-C+LOO (N=1)"</span><span class="p">,</span>
+    <span class="c1"># , linewidth=1</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">mat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">vif</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)]),</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">)),</span> <span class="nb">float</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">mat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">vif</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)]),</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_pb</span><span class="p">)),</span> <span class="nb">float</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"DO-PB (N=1)"</span><span class="p">,</span>
+    <span class="c1"># , linewidth=1</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">mat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">vif</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)]),</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_pb</span><span class="p">)),</span> <span class="nb">float</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">originals</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">[</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+<span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">mat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">vif</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)])</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">originals</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">".2"</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"C1"</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"original designs"</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">.95</span><span class="p">,</span> <span class="mf">2.05</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"mean VIF"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"Num. of trials"</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># ax.set_yscale("log")</span>
+
+<span class="c1"># if conf.savefig:</span>
+<span class="c1">#     fig.savefig(f"{conf.out}/doptim_nrep_vif.pdf", **kwarg_savefig)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x7feacd26e410&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_37_1.png" src="../_images/jupyternb_01_design_matrices_37_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[98]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">)),</span> <span class="nb">float</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"DO-C+LOO (N=1)"</span><span class="p">,</span>
+    <span class="c1"># , linewidth=1</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_mat</span><span class="p">)),</span> <span class="nb">float</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_pb</span><span class="p">)),</span> <span class="nb">float</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"DO-PB (N=1)"</span><span class="p">,</span>
+    <span class="c1"># , linewidth=1</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">51</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">,</span> <span class="n">lst_pb</span><span class="p">)),</span> <span class="nb">float</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">originals</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">[</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">,</span> <span class="n">originals</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">".2"</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"C1"</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"original designs"</span>
+<span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+
+<span class="n">pb_temp</span> <span class="o">=</span> <span class="p">[</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">duplicate</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">triplicate</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">lst_pb</span><span class="p">[</span><span class="mi">0</span><span class="p">]))]</span>
+
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"N=1"</span><span class="p">,</span> <span class="s2">"N=2"</span><span class="p">,</span> <span class="s2">"N=3"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">xs2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">36</span><span class="p">]</span>
+<span class="n">ys2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="mf">5e-11</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fromiter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">,</span> <span class="n">pb_temp</span><span class="p">),</span> <span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"do"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"pb"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+
+<span class="c1"># for x, y, t, idf in zip(xs2, ys2, texts, identifier):</span>
+<span class="c1">#     ax.text(x, y, t, size=7, ha="center", va="center", zorder=11, c="C0" if idf == "do" else "C1")</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="c1"># ax.set_ylim(-1.5, 51.5)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Condition number"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"Num. of trials"</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># ax.set_yscale("log")</span>
+
+<span class="c1"># if conf.savefig:</span>
+<span class="c1">#     fig.savefig(f"{conf.out}/doptim_nrep_cond.pdf", **kwarg_savefig)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[98]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x7feacd037eb0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyternb_01_design_matrices_38_1.png" src="../_images/jupyternb_01_design_matrices_38_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../notebooks.html" class="btn btn-neutral float-left" title="BioDOE Analyses Code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02-1_model_phi_with_cloo.html" class="btn btn-neutral float-right" title="Sim1 with C+LOO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>

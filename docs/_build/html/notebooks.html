@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BioDOE Analyses Code &mdash; BioDOE 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=fd6457a4" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-gallery.css?v=26227f6e" />
+
+
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PB" href="jupyternb/01_design_matrices.html" />
+    <link rel="prev" title="Welcome to BioDOE’s documentation!" href="index.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="index.html">
+
+              <img src="_static/default_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Analysis Code Gallery</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BioDOE Analyses Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#design-matrices-and-their-statistical-properties">#1 Design Matrices and Their Statistical Properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jupyternb/01_design_matrices.html">PB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jupyternb/01_design_matrices.html#Full-Factorial">Full Factorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jupyternb/01_design_matrices.html#D-optimization">D-optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#simulating-perturb-seq-experiments">#2 Simulating Perturb-seq Experiments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jupyternb/02-1_model_phi_with_cloo.html">Sim1 with C+LOO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="jupyternb/02-2_model_phi_with_pb.html">Sim1 with PB</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarking-experimental-designs-with-perturb-seq-simulators">#3 Benchmarking Experimental Designs with Perturb-seq Simulators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jupyternb/03-1_benchmark_phi.html">Benchmarking with Sim1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#identifying-pbsi-with-esm4">#4 Identifying PBSI with ESM4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jupyternb/04-1_esm4.html">Test4 with Benchmarking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#validating-pbsi-with-esm9">#5 Validating PBSI with ESM9</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jupyternb/05-1_esm9.html">Test9 with Benchmarking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#simulator-properties">#6 Simulator Properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="jupyternb/06-1_taylor.html">Taylor’s Power Law</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#other-schematics-generated-using-python">#7 Other Schematics Generated Using Python</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Auxiliary Python Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="auxiliary_api/modules.html">biodoe_tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BioDOE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">BioDOE Analyses Code</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/notebooks.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <section id="biodoe-analyses-code">
+<h1>BioDOE Analyses Code<a class="headerlink" href="#biodoe-analyses-code" title="Link to this heading"></a></h1>
+<section id="design-matrices-and-their-statistical-properties">
+<h2>#1 Design Matrices and Their Statistical Properties<a class="headerlink" href="#design-matrices-and-their-statistical-properties" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="jupyternb/01_design_matrices.html">
+  <div><img alt="" src="./_images/jupyternb_01_design_matrices_38_1.png"></div>
+  <div>PB</div>
+</a>
+</div>
+</div>
+</section>
+<section id="simulating-perturb-seq-experiments">
+<h2>#2 Simulating Perturb-seq Experiments<a class="headerlink" href="#simulating-perturb-seq-experiments" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="jupyternb/02-1_model_phi_with_cloo.html">
+  <div><img alt="" src="./_images/jupyternb_02-1_model_phi_with_cloo_9_0.png"></div>
+  <div>Sim1 with C+LOO</div>
+</a>
+<a class="reference internal" href="jupyternb/02-2_model_phi_with_pb.html">
+  <div><img alt="" src="./_images/jupyternb_02-2_model_phi_with_pb_7_0.png"></div>
+  <div>Sim1 with PB</div>
+</a>
+</div>
+</div>
+</section>
+<section id="benchmarking-experimental-designs-with-perturb-seq-simulators">
+<h2>#3 Benchmarking Experimental Designs with Perturb-seq Simulators<a class="headerlink" href="#benchmarking-experimental-designs-with-perturb-seq-simulators" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="jupyternb/03-1_benchmark_phi.html">
+  <div><img alt="" src="./_images/jupyternb_03-1_benchmark_phi_8_4.png"></div>
+  <div>Benchmarking with Sim1</div>
+</a>
+</div>
+</div>
+</section>
+<section id="identifying-pbsi-with-esm4">
+<h2>#4 Identifying PBSI with ESM4<a class="headerlink" href="#identifying-pbsi-with-esm4" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="jupyternb/04-1_esm4.html">
+  <div><img alt="" src="./_images/jupyternb_04-1_esm4_10_0.png"></div>
+  <div>Test4 with Benchmarking</div>
+</a>
+<a class="reference internal" href="jupyternb/04-2_ml_esm4.html">
+  <div><img alt="" src="./_images/jupyternb_04-2_ml_esm4_33_0.png"></div>
+  <div>&lt;no title&gt;</div>
+</a>
+<a class="reference internal" href="jupyternb/04-3_pbsi_esm4.html">
+  <div><img alt="" src="./_images/jupyternb_04-3_pbsi_esm4_34_1.png"></div>
+  <div>&lt;no title&gt;</div>
+</a>
+</div>
+</div>
+</section>
+<section id="validating-pbsi-with-esm9">
+<h2>#5 Validating PBSI with ESM9<a class="headerlink" href="#validating-pbsi-with-esm9" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="jupyternb/05-1_esm9.html">
+  <div><img alt="" src="./_images/jupyternb_05-1_esm9_10_0.png"></div>
+  <div>Test9 with Benchmarking</div>
+</a>
+<a class="reference internal" href="jupyternb/05-2_pbsi_esm9.html">
+  <div><img alt="" src="./_images/jupyternb_05-2_pbsi_esm9_44_12.png"></div>
+  <div>&lt;no title&gt;</div>
+</a>
+</div>
+</div>
+</section>
+<section id="simulator-properties">
+<h2>#6 Simulator Properties<a class="headerlink" href="#simulator-properties" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="jupyternb/06-1_taylor.html">
+  <div><img alt="" src="./_images/jupyternb_06-1_taylor_5_4.png"></div>
+  <div>Taylor’s Power Law</div>
+</a>
+<a class="reference internal" href="jupyternb/06-2_residual_plots.html">
+  <div><img alt="" src="./_images/jupyternb_06-2_residual_plots_18_0.png"></div>
+  <div>&lt;no title&gt;</div>
+</a>
+</div>
+</div>
+</section>
+<section id="other-schematics-generated-using-python">
+<h2>#7 Other Schematics Generated Using Python<a class="headerlink" href="#other-schematics-generated-using-python" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="jupyternb/07_other.html">
+  <div><img alt="" src="./_images/jupyternb_07_other_26_18.png"></div>
+  <div>&lt;no title&gt;</div>
+</a>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to BioDOE’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="jupyternb/01_design_matrices.html" class="btn btn-neutral float-right" title="PB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>
