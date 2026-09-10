@@ -1,31 +1,65 @@
-Analyses Code
-=============
+BioDOE Analyses Code
+====================
 
-Here's your example for adding Analysis codes with the nbgallery style!
-
-If you see this message without any thumbnails, check `docs/notebook.rst` out!
-
-Headder #1
-----------
+#1 Design Matrices and Their Statistical Properties
+---------------------------------------------------
 
 .. nbgallery::
 
-    jupyternb/<your_ipynb_basebame_1_without_file_extension>
+    jupyternb/01_design_matrices
 
 
 
-Headder #2 with a very very long headder title
-----------------------------------------------
-
-.. nbgallery::
-
-    jupyternb/<your_ipynb_basebame_2_without_file_extension>
-
-
-Make sure you draw a line with exact the same length under the headder
-----------------------------------------------------------------------
+#2 Simulating Perturb-seq Experiments
+-------------------------------------
 
 .. nbgallery::
 
-    jupyternb/<do_not_forget_to_replace_these_file_name_place_holders_with_actual_file_names>
-    jupyternb/<you_can_also_add_multiple_ipynb_files_per_subsection>
+    jupyternb/02-1_model_phi_with_cloo
+    jupyternb/02-2_model_phi_with_pb
+
+
+#3 Benchmarking Experimental Designs with Perturb-seq Simulators
+----------------------------------------------------------------
+
+.. nbgallery::
+
+    jupyternb/03-1_benchmark_phi
+    jupyternb/03-1_benchmark_psi
+    jupyternb/03-1_benchmark_lambda
+
+
+#4 Identifying PBSI with ESM4
+-----------------------------
+
+.. nbgallery::
+
+    jupyternb/04-1_esm4
+    jupyternb/04-2_ml_esm4
+    jupyternb/04-3_pbsi_esm4
+
+
+#5 Validating PBSI with ESM9
+----------------------------
+
+.. nbgallery::
+
+    jupyternb/05-1_esm9
+    jupyternb/05-2_pbsi_esm9
+
+
+#6 Simulator Properties
+-----------------------
+
+.. nbgallery::
+
+    jupyternb/06-1_taylor
+    jupyternb/06-2_residual_plots
+
+
+#7 Other Schematics Generated Using Python
+------------------------------------------
+
+.. nbgallery::
+
+    jupyternb/07_other
