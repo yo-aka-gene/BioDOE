@@ -1,8 +1,8 @@
-from pathlib import Path
-
 import numpy as np
 import rpy2.robjects as ro
 from rpy2.robjects import numpy2ri
+
+from biodoe_tools.preferences import R_TOOLS
 
 from ._abstract import DOE, DesignMatrix
 from ._fullfact import FullFactorial
@@ -10,7 +10,7 @@ from ._fullfact import FullFactorial
 numpy2ri.activate()
 
 
-R_SCRIPT = Path(__file__).with_name("d_optimization.R")
+R_SCRIPT = R_TOOLS / "d_optimization.R"
 R_FUNC_NAME = "d_optimize_core"
 
 _R_FUNC = None

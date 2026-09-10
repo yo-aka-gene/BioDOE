@@ -1,15 +1,15 @@
-from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import rpy2.robjects as ro
 from rpy2.robjects import numpy2ri
 
+from biodoe_tools.preferences import R_TOOLS
+
 from ._abstract import AbstractSimulator
 from ._anova_power import sigma2
 from ._dunnett import Dunnett
 
-R_SCRIPT = Path(__file__).with_name("dunnett_power.R")
+R_SCRIPT = R_TOOLS / "dunnett_power.R"
 R_FUNC_NAME = "dunnett_power_analytic"
 
 _R_FUNC = None

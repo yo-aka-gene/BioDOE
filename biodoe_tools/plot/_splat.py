@@ -1,11 +1,11 @@
-from pathlib import Path
-
 import anndata as ad
 import numpy as np
 import rpy2.robjects as ro
 from rpy2.robjects import numpy2ri
 
-R_SCRIPT = Path(__file__).with_name("splat.R")
+from biodoe_tools.preferences import R_TOOLS
+
+R_SCRIPT = R_TOOLS / "splat.R"
 R_FUNC_NAME = "generate_clusters"
 
 _R_FUNC = None
