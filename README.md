@@ -6,7 +6,7 @@
 [<img src="https://img.shields.io/badge/Code_Examples-Jupyter_Notebook-F37626?style=flat&logo=jupyter">](https://biodoe.readthedocs.io/en/latest/notebooks.html)
 [<img src="https://img.shields.io/badge/GitHub-yo--aka--gene/BioDOE-181717?style=flat&logo=github">](https://github.com/yo-aka-gene/BioDOE)
 <div align="center">
-<img src="./docs/_static/perturb-seq_concept.svg" alt="graphical abstract" width="300" height="300" title="graphical abstract">
+<img src="./docs/_static/perturb-seq_concept.svg" alt="graphical abstract" width="600" height="300" title="graphical abstract">
 </div>
 Design-of-experiments for nonlinear biological systems.
 
