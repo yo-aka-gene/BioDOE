@@ -138,7 +138,7 @@ clean:
 	@echo "Clean up complete."
 
 bump-patch:
-	@mamba run -n $(MAMBA_ENV) poetry version patch
+	@$(POETRY) version patch
 
 bump-minor:
 	@mamba run -n $(MAMBA_ENV) poetry version minor
