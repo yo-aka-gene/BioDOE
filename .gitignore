@@ -194,3 +194,6 @@ renv/.cache/
 *.ipc
 *.feather
 *.pkl
+
+# acrest-gpu1 artifact
+.nfs*
