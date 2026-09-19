@@ -196,7 +196,7 @@ install-conda:
 # ==========================================
 # Python
 # ==========================================
-.PHONY: add-py add-pydev remove-py remove-pydev lock-py install-py
+.PHONY: setup-poetry add-py add-pydev remove-py remove-pydev lock-py install-py
 
 COMMA := ,
 CLEAN_PKG_VAL = $(strip $(subst $(COMMA), ,$(PKG)))
