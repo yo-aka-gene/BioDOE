@@ -417,17 +417,13 @@ docs-r: sync-r
 		devtools::document('$(R_PKG_DIR)'); \
 		pkgdown::build_site(pkg = '$(R_PKG_DIR)', override = list(destination = '../docs/r_api'), new_process = FALSE, install = FALSE)"
 
-docs-py:
+docs-py: setup-py
 	@echo "Building Sphinx HTML documentation..."
-	@mamba run -n $(MAMBA_ENV) \
-		poetry export --with dev --without-hashes --format=requirements.txt > docs/requirements.txt
-	@mamba run -n $(MAMBA_ENV) \
-		poetry run sphinx-apidoc -f -o docs/auxiliary_api biodoe_tools/
-	@mamba run -n $(MAMBA_ENV) \
-		poetry run sphinx-build -a -E -b html docs docs/_build/html
+	@$(POETRY) export --with dev --without-hashes --format=requirements.txt > docs/requirements.txt
+	@$(POETRY) run sphinx-apidoc -f -o docs/auxiliary_api biodoe_tools/
+	@$(POETRY) run sphinx-build -a -E -b html docs docs/_build/html
 	@echo "Opening documentation in browser..."
-	@mamba run -n $(MAMBA_ENV) \
-		poetry run python -c \
+	@$(POETRY) run python -c \
 		"import webbrowser, os; webbrowser.open('file://' + os.path.realpath('docs/_build/html/index.html'))"
 
 docs: docs-r docs-py
