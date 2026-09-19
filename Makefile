@@ -235,9 +235,9 @@ lock-py: setup-poetry
 	@$(POETRY) lock
 	@$(POETRY) export --with dev --without-hashes --format=requirements.txt > .basalcell/requirements.txt
 
-install-py:
+install-py: setup-py
 	@echo "Installing Python dependencies from lock file..."
-	mamba run -n $(MAMBA_ENV) poetry install
+	@$(POETRY) install
 
 PYDEV_CORE := ipykernel ipywidgets jupyterlab jupyter-resource-usage \
 			  pytest mypy ruff \
@@ -391,7 +391,7 @@ init:
 
 test-py:
 	@echo "Running Python tests..."
-	mamba run -n $(MAMBA_ENV) poetry run pytest
+	@$(POETRY) run pytest
 	@rm -fr .pytest_cache
 
 test-r:
