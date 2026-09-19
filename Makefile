@@ -144,7 +144,7 @@ bump-minor:
 	@$(POETRY) version minor
 
 bump-major:
-	@mamba run -n $(MAMBA_ENV) poetry version major
+	@$(POETRY) version major
 
 define CALL_PY_FUNC
 	mamba run -n $(MAMBA_ENV) python -c "import sys; sys.path.append('./.basalcell'); \
