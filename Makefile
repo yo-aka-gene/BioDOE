@@ -141,7 +141,7 @@ bump-patch:
 	@$(POETRY) version patch
 
 bump-minor:
-	@mamba run -n $(MAMBA_ENV) poetry version minor
+	@$(POETRY) version minor
 
 bump-major:
 	@mamba run -n $(MAMBA_ENV) poetry version major
