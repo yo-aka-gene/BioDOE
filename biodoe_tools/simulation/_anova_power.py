@@ -54,7 +54,7 @@ def SSe(simulator: AbstractSimulator) -> np.ndarray:
 
 
 def sigma2(simulator: AbstractSimulator) -> np.ndarray:
-    """
+    r"""
     unbiased estimator of $\sigma^2$ is $\frac{SS_e}{\phi_e}$
     """
     return SSe(simulator) / phi_e(simulator)
@@ -76,7 +76,7 @@ def beta(X_des: np.ndarray, y_obs: np.ndarray) -> np.ndarray:
 
 
 def lambda_i(simulator: AbstractSimulator, i: int) -> float:
-    """
+    r"""
     estimates noncentrality parameter $\lambda_i$
     """
     return (

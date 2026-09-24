@@ -40,7 +40,7 @@ class NoiseConfigurator:
     def __init__(self, noise_arr: list) -> None:
         self.arr = noise_arr
         self.conf = [dict(kwarg_err=dict(loc=0, scale=sigma)) for sigma in noise_arr]
-        self.names = ["$\sigma=" + f"{sigma}$" for sigma in noise_arr]
+        self.names = [r"$\sigma=" + f"{sigma}$" for sigma in noise_arr]
         self.size = len(noise_arr)
 
     def __call__(self) -> dict:
@@ -1041,7 +1041,7 @@ class DOptimizationBenchmarker(Benchmarker):
                 a.set_title(self.noise.names[i % self.noise.size])
 
             a.set_xlabel(
-                "$n_{\max}$"
+                r"$n_{\max}$"
                 + f" ({labels[items[i // self.noise.size]]} at $N="
                 + f"{self.metadata.N})$"
             )
