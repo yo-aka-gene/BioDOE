@@ -20,7 +20,7 @@
     "import shap\n",
     "from sklearn.model_selection import train_test_split\n",
     "\n",
-    "from biodoe_tools.preferences import kwarg_savefig, outputdir, harmonic_mean\n",
+    "from biodoe_tools.preferences import kwarg_savefig, OUTPUT_DIR, harmonic_mean\n",
     "from biodoe_tools.simulation.esm4_metrics import *\n",
     "from biodoe_tools.ml import plot_pr, plot_roc, plot_pr2, plot_roc2\n",
     "from biodoe_tools.ml.lightgbm_args import multiclass_args, regression_args"
@@ -35,7 +35,7 @@
    "source": [
     "class Config(NamedTuple):\n",
     "    savefig: bool = True\n",
-    "    out: str = outputdir\n",
+    "    out: str = OUTPUT_DIR\n",
     "    suffix: str = \"_test4\"\n",
     "\n",
     "conf = Config(savefig=True)"

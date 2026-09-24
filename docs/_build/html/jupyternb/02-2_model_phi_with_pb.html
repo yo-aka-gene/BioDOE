@@ -110,7 +110,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sm</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.design</span><span class="w"> </span><span class="kn">import</span> <span class="n">DOE</span><span class="p">,</span> <span class="n">PlackettBurman</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.preferences</span><span class="w"> </span><span class="kn">import</span> <span class="n">kwarg_savefig</span><span class="p">,</span> <span class="n">outputdir</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.preferences</span><span class="w"> </span><span class="kn">import</span> <span class="n">kwarg_savefig</span><span class="p">,</span> <span class="n">OUTPUT_DIR</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">biodoe_tools.simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sim1</span><span class="p">,</span> <span class="n">MLR</span>
 </pre></div>
 </div>
@@ -121,7 +121,7 @@
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
     <span class="n">savefig</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">out</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">outputdir</span>
+    <span class="n">out</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OUTPUT_DIR</span>
     <span class="n">design</span><span class="p">:</span> <span class="n">DOE</span> <span class="o">=</span> <span class="n">PlackettBurman</span>
     <span class="n">sim_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"Model $\Phi$"</span>
     <span class="n">run_names</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span>

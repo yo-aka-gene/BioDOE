@@ -29,7 +29,7 @@
     "\n",
     "from biodoe_tools.design import CLOO, DOE\n",
     "from biodoe_tools.plot import bio_multicomp\n",
-    "from biodoe_tools.preferences import kwarg_savefig, outputdir\n",
+    "from biodoe_tools.preferences import kwarg_savefig, OUTPUT_DIR\n",
     "from biodoe_tools.simulation import AbstractSimulator, Sim1, MLR"
    ]
   },
@@ -42,7 +42,7 @@
    "source": [
     "class Config(NamedTuple):\n",
     "    savefig: bool = True\n",
-    "    out: str = outputdir\n",
+    "    out: str = OUTPUT_DIR\n",
     "    design: DOE = CLOO\n",
     "    simulator: AbstractSimulator = Sim1\n",
     "    run_names: list = [\n",

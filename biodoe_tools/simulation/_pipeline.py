@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score, cohen_kappa_score
 from tqdm.notebook import tqdm
 
 from biodoe_tools.design import CLOO, DOCLOO, DOE, PlackettBurman, d_criterion
-from biodoe_tools.preferences import fmt_suffix, kwarg_err, kwarg_savefig, outputdir
+from biodoe_tools.preferences import OUTPUT_DIR, fmt_suffix, kwarg_err, kwarg_savefig
 
 from ._abstract import AbstractSimulator
 from ._anova_power import anova_power
@@ -555,7 +555,7 @@ class BenchmarkingPipeline:
             "plot_power": {},
         },
         savefig: bool = False,
-        where: str = outputdir,
+        where: str = OUTPUT_DIR,
         titles: dict = {
             "plot_groundtruth": "groundtrue_results",
             "plot_benchmarking": "benchmarks",
@@ -1082,7 +1082,7 @@ class DOptimizationBenchmarkingPipeline(BenchmarkingPipeline):
         func: list = ["plot_benchmarking", "plot_power"],
         kwargs: dict = {"plot_benchmarking": {}, "plot_power": {}},
         savefig: bool = False,
-        where: str = outputdir,
+        where: str = OUTPUT_DIR,
         titles: dict = {
             "plot_benchmarking": "benchmarks_with_do",
             "plot_power": "power_doptim",

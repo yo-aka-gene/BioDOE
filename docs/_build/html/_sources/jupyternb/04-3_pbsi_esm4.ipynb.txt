@@ -16,7 +16,7 @@
     "from sklearn.model_selection import train_test_split\n",
     "import matplotlib.pyplot as plt\n",
     "\n",
-    "from biodoe_tools.preferences import kwarg_savefig, outputdir, f2s\n",
+    "from biodoe_tools.preferences import kwarg_savefig, OUTPUT_DIR, f2s\n",
     "from biodoe_tools.ml import plot_pr, plot_roc\n",
     "from sklearn.metrics import accuracy_score, roc_auc_score, roc_curve, average_precision_score, f1_score\n",
     "from sklearn.linear_model import LogisticRegression\n",
@@ -110,7 +110,7 @@
     "\n",
     "df = pd.concat(\n",
     "    [\n",
-    "        pd.read_feather(f\"{outputdir}/esm_test4.feather\"),\n",
+    "        pd.read_feather(f\"{OUTPUT_DIR}/esm_test4.feather\"),\n",
     "        pd.DataFrame(\n",
     "            arr_top10,\n",
     "            columns=top10\n",
@@ -905,7 +905,7 @@
     "    #     ha=\"right\" if is_larger else \"left\", va=\"center\", size=7\n",
     "    # )\n",
     "\n",
-    "# fig.savefig(f\"{outputdir}/test4_roc\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_roc\", **kwarg_savefig)"
    ]
   },
   {
@@ -957,7 +957,7 @@
     "    #     ha=\"right\" if is_larger else \"left\", va=\"center\", size=6\n",
     "    # )\n",
     "\n",
-    "fig.savefig(f\"{outputdir}/test4_roc.pdf\", **kwarg_savefig)"
+    "fig.savefig(f\"{OUTPUT_DIR}/test4_roc.pdf\", **kwarg_savefig)"
    ]
   },
   {
@@ -1032,7 +1032,7 @@
     "# ax[0].legend(fontsize=\"x-small\", loc=\"upper center\", bbox_to_anchor=(.5, -.2), ncol=2)\n",
     "ax[0].set(title=\"ESM4\", xlabel=\"FPR\", ylabel=\"TPR\")\n",
     "\n",
-    "# fig.savefig(f\"{outputdir}/test4_roc\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_roc\", **kwarg_savefig)"
    ]
   },
   {
@@ -1081,7 +1081,7 @@
     "    rasterized=True\n",
     ")\n",
     "\n",
-    "fig.savefig(f\"{outputdir}/test4_arithmetic_conditions.pdf\", **kwarg_savefig)"
+    "fig.savefig(f\"{OUTPUT_DIR}/test4_arithmetic_conditions.pdf\", **kwarg_savefig)"
    ]
   },
   {
@@ -1205,7 +1205,7 @@
     "ax.set(title=\"ESM4\", xlabel=\"FPR\", ylabel=\"TPR\")\n",
     "ax.legend(fontsize=\"x-small\", loc=\"center left\", bbox_to_anchor=(1, .5), ncol=3, frameon=False)\n",
     "\n",
-    "# fig.savefig(f\"{outputdir}/test4_roc_arithmetic\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_roc_arithmetic\", **kwarg_savefig)"
    ]
   },
   {
@@ -1257,7 +1257,7 @@
     "ax.set(title=\"ESM4\", xlabel=\"Composite indices (arithmetic#)\")\n",
     "\n",
     "\n",
-    "fig.savefig(f\"{outputdir}/test4_roc_arithmetic.pdf\", **kwarg_savefig)"
+    "fig.savefig(f\"{OUTPUT_DIR}/test4_roc_arithmetic.pdf\", **kwarg_savefig)"
    ]
   },
   {
@@ -1319,7 +1319,7 @@
     "ax.set(title=\"ESM4\", xlabel=\"Composite indices (arithmetic#)\")\n",
     "\n",
     "\n",
-    "fig.savefig(f\"{outputdir}/test4_auc_arithmetic.pdf\", **kwarg_savefig)"
+    "fig.savefig(f\"{OUTPUT_DIR}/test4_auc_arithmetic.pdf\", **kwarg_savefig)"
    ]
   },
   {
@@ -1439,7 +1439,7 @@
     "ax.legend(fontsize=\"x-small\", loc=\"center left\", bbox_to_anchor=(1, .5), ncol=3, frameon=False)\n",
     "ax.set(title=\"ESM4\", xlabel=\"FPR\", ylabel=\"TPR\")\n",
     "\n",
-    "# fig.savefig(f\"{outputdir}/test4_roc_arithmetic\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_roc_arithmetic\", **kwarg_savefig)"
    ]
   },
   {
@@ -1493,7 +1493,7 @@
     "\n",
     "ax.set(title=\"ESM4\")\n",
     "\n",
-    "# fig.savefig(f\"{outputdir}/test4_auc_arithmetic\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_auc_arithmetic\", **kwarg_savefig)"
    ]
   },
   {
@@ -1600,7 +1600,7 @@
     "ax[0].legend(fontsize=\"small\", loc=\"lower right\", frameon=False)\n",
     "ax[0].set(title=\"ESM4\", xlabel=\"FPR\", ylabel=\"TPR\")\n",
     "\n",
-    "# fig.savefig(f\"{outputdir}/test4_roc_integrated\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_roc_integrated\", **kwarg_savefig)"
    ]
   },
   {
@@ -1736,7 +1736,7 @@
     "        i, f\"{f2s(sorted_mean_auroc.loc[name].item())} [{f2s(low)}–{f2s(high)}]\",\n",
     "        ha=\"right\" if is_larger else \"left\", va=\"center\", size=8\n",
     "    )\n",
-    "# fig.savefig(f\"{outputdir}/test4_roc_integrated\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_roc_integrated\", **kwarg_savefig)"
    ]
   },
   {
@@ -1786,7 +1786,7 @@
     "ax.set(title=\"ESM4\", xlabel=\"FPR\", ylabel=\"TPR\")\n",
     "ax.legend(fontsize=8, frameon=False)\n",
     "\n",
-    "fig.savefig(f\"{outputdir}/test4_roc_integrated.pdf\", **kwarg_savefig)"
+    "fig.savefig(f\"{OUTPUT_DIR}/test4_roc_integrated.pdf\", **kwarg_savefig)"
    ]
   },
   {
@@ -1842,7 +1842,7 @@
     "ax.legend(fontsize=\"small\", loc=\"lower right\", frameon=False)\n",
     "ax.set(title=\"PBSI (ESM4)\", xlabel=\"FPR\", ylabel=\"TPR\")\n",
     "\n",
-    "# fig.savefig(f\"{outputdir}/test4_roc_integrated\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_roc_integrated\", **kwarg_savefig)"
    ]
   },
   {
@@ -1887,7 +1887,7 @@
     "ax.legend(fontsize=\"x-small\", loc=\"center left\", bbox_to_anchor=(1, .5), frameon=False)\n",
     "ax.set(title=\"ESM4\", xlabel=\"recall\", ylabel=\"precision\")\n",
     "\n",
-    "# fig.savefig(f\"{outputdir}/test4_pr\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_pr\", **kwarg_savefig)"
    ]
   },
   {
@@ -1969,7 +1969,7 @@
     ")\n",
     "ax[1].set(title=\"PR curve (ESM9)\", xlabel=\"recall\", ylabel=\"precision\")\n",
     "\n",
-    "# fig.savefig(f\"{outputdir}/test4_roc_pr_integrated\", **kwarg_savefig)"
+    "# fig.savefig(f\"{OUTPUT_DIR}/test4_roc_pr_integrated\", **kwarg_savefig)"
    ]
   },
   {
@@ -2132,7 +2132,7 @@
     "ax[1].set_xticklabels(sorted_feat_names, fontsize=\"small\")\n",
     "ax[1].set_xlim([-.3, 1.3])\n",
     "\n",
-    "fig.savefig(f\"{outputdir}/test4_logistic_regression.pdf\", **kwarg_savefig)"
+    "fig.savefig(f\"{OUTPUT_DIR}/test4_logistic_regression.pdf\", **kwarg_savefig)"
    ]
   },
   {

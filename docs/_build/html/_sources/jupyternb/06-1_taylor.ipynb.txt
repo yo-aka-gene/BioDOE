@@ -26,7 +26,7 @@
     "\n",
     "from biodoe_tools.design import PlackettBurman, DOE, FullFactorial\n",
     "from biodoe_tools.plot import bio_multicomp\n",
-    "from biodoe_tools.preferences import kwarg_savefig, outputdir\n",
+    "from biodoe_tools.preferences import kwarg_savefig, OUTPUT_DIR\n",
     "from biodoe_tools.simulation import AbstractSimulator, Sim1, Circuit, MLR, Sparse"
    ]
   },
@@ -49,7 +49,7 @@
    "source": [
     "class Config(NamedTuple):\n",
     "    savefig: bool = True\n",
-    "    out: str = outputdir\n",
+    "    out: str = OUTPUT_DIR\n",
     "\n",
     "conf = Config()"
    ]
