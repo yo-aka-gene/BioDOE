@@ -1,9 +1,10 @@
-from . import design, ml, plot, preferences, simulation
+from . import design, evaluation, ml, plot, preferences, simulation
 
 __all__ = [
-    design,
-    ml,
-    plot,
-    preferences,
-    simulation,
+    "design",
+    "evaluation",
+    "ml",
+    "plot",
+    "preferences",
+    "simulation",
 ]
