@@ -9,9 +9,7 @@ R_SCRIPT = R_TOOLS / "splat.R"
 R_FUNC_NAME = "generate_clusters"
 
 _R_FUNC = None
-
-
-numpy2ri.activate()
+_NUMPY_CONVERTER = ro.default_converter + numpy2ri.converter
 
 
 with R_SCRIPT.open() as f:
@@ -38,13 +36,14 @@ def generate_clusters(
     if group_prob.sum() != 1:
         group_prob /= group_prob.sum()
 
-    count = _R_FUNC(
-        n_genes=n_genes,
-        n_cells=n_cells,
-        group_prob=group_prob,
-        de_prob=de_prob,
-        dropout_mid=dropout_mid,
-        random_state=random_state,
-    )
+    with _NUMPY_CONVERTER.context():
+        count = _R_FUNC(
+            n_genes=n_genes,
+            n_cells=n_cells,
+            group_prob=group_prob,
+            de_prob=de_prob,
+            dropout_mid=dropout_mid,
+            random_state=random_state,
+        )
 
     return ad.AnnData(X=np.asarray(count).T)

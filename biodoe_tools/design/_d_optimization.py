@@ -7,8 +7,7 @@ from biodoe_tools.preferences import R_TOOLS
 from ._abstract import DOE, DesignMatrix
 from ._fullfact import FullFactorial
 
-numpy2ri.activate()
-
+NUMPY_CONVERTER = ro.default_converter + numpy2ri.converter
 
 R_SCRIPT = R_TOOLS / "d_optimization.R"
 R_FUNC_NAME = "d_optimize_core"
@@ -62,20 +61,21 @@ def d_optimize(
         )
         n_add = n_total - dsmatrix.shape[0]
 
-    assert (
-        isinstance(n_add, (int, np.integer)) and n_add >= 0
-    ), f"Invalid n_add value: n_add={n_add} should be an integer >= 0."
+    assert isinstance(n_add, (int, np.integer)) and n_add >= 0, (
+        f"Invalid n_add value: n_add={n_add} should be an integer >= 0."
+    )
 
     n_factor = dsmatrix.shape[1]
 
     _initialize_r_func()
 
-    optimized = _R_FUNC(
-        dsmatrix=dsmatrix.values,
-        candidate=FullFactorial().get_exmatrix(n_factor).values,
-        n_add=n_add,
-        random_state=random_state,
-    )
+    with NUMPY_CONVERTER.context():
+        optimized = _R_FUNC(
+            dsmatrix=dsmatrix.values,
+            candidate=FullFactorial().get_exmatrix(n_factor).values,
+            n_add=n_add,
+            random_state=random_state,
+        )
 
     # NOTE:
     # The historical implementation transposes the matrix returned through
@@ -107,9 +107,7 @@ class DOptimization(DOE):
             random_state=random_state,
         )
 
-        self.title = (
-            f"{self.name} design with {len(optimized)} trials " f"(n={n_factor})"
-        )
+        self.title = f"{self.name} design with {len(optimized)} trials (n={n_factor})"
 
         return DesignMatrix(optimized)
 

@@ -13,9 +13,7 @@ R_SCRIPT = R_TOOLS / "dunnett_power.R"
 R_FUNC_NAME = "dunnett_power_analytic"
 
 _R_FUNC = None
-
-
-numpy2ri.activate()
+_NUMPY_CONVERTER = ro.default_converter + numpy2ri.converter
 
 
 with R_SCRIPT.open() as f:
@@ -49,14 +47,15 @@ def dunnett_power(
         dunnett_model.summary()
         _initialize_r_func()
 
-        result = _R_FUNC(
-            mu0=float(dunnett_model.baseline.y),
-            mu_t=dunnett_model.coef.y.values.ravel(),
-            n0=dunnett_model.n_rep,
-            nt=dunnett_model.n_rep,
-            sigma=np.sqrt(sigma2(dunnett_model.simulation).item()),
-            alpha=alpha,
-        )
+        with _NUMPY_CONVERTER.context():
+            result = _R_FUNC(
+                mu0=float(dunnett_model.baseline.y),
+                mu_t=dunnett_model.coef.y.values.ravel(),
+                n0=dunnett_model.n_rep,
+                nt=dunnett_model.n_rep,
+                sigma=np.sqrt(sigma2(dunnett_model.simulation).item()),
+                alpha=alpha,
+            )
 
         power_dict = dict(zip(result.names, result))
 
