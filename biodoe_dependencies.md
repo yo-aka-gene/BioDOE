@@ -1,6 +1,6 @@
 # BioDOE
 ## Dependency Info
-- this file was generated at: 06:38:23, Sep 10, 2026
+- this file was generated at: 15:33:58, Sep 24, 2026
 
 | name | alias | version | required_version | language | platform | installation |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -11,7 +11,9 @@
 | python | python | 3.12.14 | =3.12 | Python | linux-64 | Mamba |
 | python | python | 3.12.14 | =3.12 | Python | osx-64 | Mamba |
 | python | python | 3.12.14 | =3.12 | Python | osx-arm64 | Mamba |
-| rpy2 | rpy2 | 3.6.7 | ^3.6.7 | Python | any | poetry |
+| rpy2 | rpy2 | 3.6.5 | 3.6.5 | Python | any | poetry |
+| rpy2-rinterface | rpy2-rinterface | 3.6.5 | 3.6.5 | Python | any | poetry |
+| rpy2-robjects | rpy2-robjects | 3.6.5 | 3.6.5 | Python | any | poetry |
 | scikit-learn | scikit-learn | 1.9.0 | ^1.9.0 | Python | any | poetry |
 | seaborn | seaborn | 0.13.2 | ^0.13.2 | Python | any | poetry |
 | statsmodels | statsmodels | 0.15.0 | ^0.15.0 | Python | any | poetry |

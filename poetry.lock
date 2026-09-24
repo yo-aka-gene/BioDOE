@@ -4093,20 +4093,20 @@ files = [
 
 [[package]]
 name = "rpy2"
-version = "3.6.7"
+version = "3.6.5"
 description = "Python interface to the R language (embedded R)"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "rpy2-3.6.7-py3-none-any.whl", hash = "sha256:6490e04cf8a912c0479f1803202cb8680cba702bd3d64c021601235c4fefb249"},
-    {file = "rpy2-3.6.7.tar.gz", hash = "sha256:f1fb4649ce7d14e935133088dec97cda27eb37ce7cc710385f81dca556fe8c9f"},
+    {file = "rpy2-3.6.5-py3-none-any.whl", hash = "sha256:1e7a0572895e98f9c38c5ec6cee424503eb812cacfa3fe07fdb9d3b72e82ff76"},
+    {file = "rpy2-3.6.5.tar.gz", hash = "sha256:826fc0fabd71cca49b692fac9afc3815ea6c34935844aaefe424da5b76dd68e6"},
 ]
 
 [package.dependencies]
 packaging = {version = "*", markers = "platform_system == \"Windows\""}
-rpy2-rinterface = ">=3.6.6"
-rpy2-robjects = ">=3.6.5"
+rpy2-rinterface = ">=3.6.4"
+rpy2-robjects = ">=3.6.3"
 
 [package.extras]
 all = ["rpy2-rinterface[all]", "rpy2-robjects[all]"]
@@ -4119,25 +4119,25 @@ types = ["mypy", "types-tzlocal"]
 
 [[package]]
 name = "rpy2-rinterface"
-version = "3.6.6"
+version = "3.6.5"
 description = "Low-level interface from Python to the R."
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "rpy2_rinterface-3.6.6-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:b304599415219cc8fb11cad704334bde89835d7da6dcf4f32ac1e49c3401a596"},
-    {file = "rpy2_rinterface-3.6.6-cp310-cp310-win_amd64.whl", hash = "sha256:1ee9540a15d5e33df8535d8ac8d684c00d24be48671b0feea5dd1674a9fbf788"},
-    {file = "rpy2_rinterface-3.6.6-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:a6c91b0769871c8ce266c31a351196bf74ae62ab53602e6b7e618abb8fe123f6"},
-    {file = "rpy2_rinterface-3.6.6-cp311-cp311-win_amd64.whl", hash = "sha256:4084d93c1a4e3cd89866b514d0e845e2ef38838ee06d9fd92e1643cdcb8eafd0"},
-    {file = "rpy2_rinterface-3.6.6-cp312-cp312-macosx_10_13_universal2.whl", hash = "sha256:bf905d3b43686c855d21b1597d4dca995c42f9ef9884a3abb1aa28af80dc9e61"},
-    {file = "rpy2_rinterface-3.6.6-cp312-cp312-win_amd64.whl", hash = "sha256:da2330a969b2d14b3e5bad97415935946753712b574160bf46589a9e513ec5d1"},
-    {file = "rpy2_rinterface-3.6.6-cp313-cp313-macosx_10_13_universal2.whl", hash = "sha256:b16c739b4dee07f72d0307281435100739fea26f59f73bf0c4c99aa069981045"},
-    {file = "rpy2_rinterface-3.6.6-cp313-cp313-win_amd64.whl", hash = "sha256:3a623c71ff4e2bc0fb642837713a13d447cf9129aff11dea52362f4b08d32f59"},
-    {file = "rpy2_rinterface-3.6.6-cp314-cp314-macosx_10_15_universal2.whl", hash = "sha256:722ac9b26bcb65519f82e230a16de1ee213b1dafc7e56b4465d8655706e5080e"},
-    {file = "rpy2_rinterface-3.6.6-cp314-cp314-win_amd64.whl", hash = "sha256:22ecc9a12aa435134b8f017aaea3f307bc527ed2151a402f5c5c82f019e9e24e"},
-    {file = "rpy2_rinterface-3.6.6-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:47b7e523591676e98c290794c546cf945e81cfb859d43ba24b7cff23c45659a0"},
-    {file = "rpy2_rinterface-3.6.6-cp39-cp39-win_amd64.whl", hash = "sha256:1d7392a1f3828b6b65b71fae01a7d18c7dd05f14d7ce5b0344aff9746724bbf3"},
-    {file = "rpy2_rinterface-3.6.6.tar.gz", hash = "sha256:a9cc1341ce5cb4df1dc67c40dc3b2ce0caface7215bd4262fe0ed011958a3369"},
+    {file = "rpy2_rinterface-3.6.5-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:94f78c16e32e719528ea8fa6ab482b6db3eb1aa2baff46a9feaa4d091bcb4ec4"},
+    {file = "rpy2_rinterface-3.6.5-cp310-cp310-win_amd64.whl", hash = "sha256:e812d5defffa2f34f7a5e246194e412865e8ea4e873b2541b36a6a0e83753b35"},
+    {file = "rpy2_rinterface-3.6.5-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:6704c3d74d6c2288c242ca31b8399c4db198742c6c3f0efb4ffc3da757ad6448"},
+    {file = "rpy2_rinterface-3.6.5-cp311-cp311-win_amd64.whl", hash = "sha256:d62746281d98d5b4e2890f85ff14a8fd06d245e282eeee60a8aa489ee5ece776"},
+    {file = "rpy2_rinterface-3.6.5-cp312-cp312-macosx_10_13_universal2.whl", hash = "sha256:f33b0973f33babb03daad7842baafd64a752dfa35f01918c9d2e5a8ae7dd5dce"},
+    {file = "rpy2_rinterface-3.6.5-cp312-cp312-win_amd64.whl", hash = "sha256:b26c80fdb35d802deb7d3a82a7f2e7a86ee3f20a6b8b51150fbdfcad6229ecfd"},
+    {file = "rpy2_rinterface-3.6.5-cp313-cp313-macosx_10_13_universal2.whl", hash = "sha256:b371681147c75d5d5c487ee55549c761340e8cc9ff5d061cb9f17d0067354d83"},
+    {file = "rpy2_rinterface-3.6.5-cp313-cp313-win_amd64.whl", hash = "sha256:a3cf72525ee281b0b46677598f18ac62a84f9157ff37c3e8b006a141c1703806"},
+    {file = "rpy2_rinterface-3.6.5-cp314-cp314-macosx_10_15_universal2.whl", hash = "sha256:f181d3d58148d5597d1ef37c2b3c97a95d643614adb7eeb390924db59435d9da"},
+    {file = "rpy2_rinterface-3.6.5-cp314-cp314-win_amd64.whl", hash = "sha256:7f0159c8af3d3cd3216dde62fe1027b59070e86b4c87599d5a6c6a6a25f594eb"},
+    {file = "rpy2_rinterface-3.6.5-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:6faa41bf5c1e75ae41cf9da8838d0dd86948cd317a303171dc7e40d7e77c80e4"},
+    {file = "rpy2_rinterface-3.6.5-cp39-cp39-win_amd64.whl", hash = "sha256:ab8f96007cb8aa2185ef1158cebae327d6fdb42072a767dc8721e777c8246e0d"},
+    {file = "rpy2_rinterface-3.6.5.tar.gz", hash = "sha256:9b3610ebbb9625a3c49dadfd9d4bafbc5f1eb412056d9406bcdb500d274d4198"},
 ]
 
 [package.dependencies]
@@ -5138,4 +5138,4 @@ remote = ["fsspec (>=2023.10.0)", "obstore (>=0.5.1)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "70a50730f9dfb67dc4f2b5e772c81e1f06eb5c33a06dcc0977678401b14e4f5e"
+content-hash = "c4d870af9d703d26dcc65e7e4e770ca34f8de1e4272d375ff9c2f4511d19388a"
