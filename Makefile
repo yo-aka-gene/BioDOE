@@ -417,7 +417,7 @@ docs-r: sync-r
 		devtools::document('$(R_PKG_DIR)'); \
 		pkgdown::build_site(pkg = '$(R_PKG_DIR)', override = list(destination = '../docs/r_api'), new_process = FALSE, install = FALSE)"
 
-docs-py: setup-py
+docs-py: setup-poetry
 	@echo "Building Sphinx HTML documentation..."
 	@$(POETRY) export --with dev --without-hashes --format=requirements.txt > docs/requirements.txt
 	@$(POETRY) run sphinx-apidoc -f -o docs/auxiliary_api biodoe_tools/
