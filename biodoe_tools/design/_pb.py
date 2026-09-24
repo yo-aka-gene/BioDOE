@@ -1,4 +1,4 @@
-from pyDOE import pbdesign
+from pydoe import pbdesign
 
 from ._abstract import DOE, DesignMatrix
 
