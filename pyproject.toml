@@ -18,6 +18,7 @@ rpy2-rinterface = "3.6.5"
 rpy2-robjects = "3.6.5"
 scikit-learn = "^1.9.0"
 anndata = "^0.13.3.post0"
+tqdm = "^4.70.1"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^7.3.0"

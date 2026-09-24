@@ -1,6 +1,6 @@
 # BioDOE
 ## Dependency Info
-- this file was generated at: 15:33:58, Sep 24, 2026
+- this file was generated at: 16:01:41, Sep 24, 2026
 
 | name | alias | version | required_version | language | platform | installation |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -17,6 +17,7 @@
 | scikit-learn | scikit-learn | 1.9.0 | ^1.9.0 | Python | any | poetry |
 | seaborn | seaborn | 0.13.2 | ^0.13.2 | Python | any | poetry |
 | statsmodels | statsmodels | 0.15.0 | ^0.15.0 | Python | any | poetry |
+| tqdm | tqdm | 4.70.1 | ^4.70.1 | Python | any | poetry |
 | r-algdesign | AlgDesign | 1.2.1.2 | None | R | any | Mamba |
 | r-base | R | 4.4.3 | =4.4 | R | linux-64 | Mamba |
 | r-base | R | 4.4.3 | =4.4 | R | osx-64 | Mamba |
