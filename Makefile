@@ -235,7 +235,7 @@ lock-py: setup-poetry
 	@$(POETRY) lock
 	@$(POETRY) export --with dev --without-hashes --format=requirements.txt > .basalcell/requirements.txt
 
-install-py: setup-py
+install-py: setup-poetry
 	@echo "Installing Python dependencies from lock file..."
 	@$(POETRY) install
 
